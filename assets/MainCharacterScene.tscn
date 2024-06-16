@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx6prae73xmdm"]
+
+[ext_resource type="Script" path="res://Scripts/MainCharacterScript.gd" id="1_2und1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d6aje"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kplo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k7ush"]
+material = SubResource("StandardMaterial3D_8kplo")
+
+[node name="MainCharacter" type="CharacterBody3D"]
+script = ExtResource("1_2und1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_d6aje")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_k7ush")
