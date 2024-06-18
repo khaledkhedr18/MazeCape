@@ -1,26 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=12 format=3 uid="uid://b7yfbfj26qdeg"]
 
-[ext_resource type="PackedScene" uid="uid://dx6prae73xmdm" path="res://assets/MainCharacterScene.tscn" id="1_3asy4"]
-[ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Ground068_2K-PNG_Color.png" id="1_4rhxx"]
-[ext_resource type="Script" path="res://addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="2_unhei"]
-[ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Ground068_2K-PNG_NormalDX.png" id="2_v1ddw"]
-[ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Ground068_2K-PNG_Roughness.png" id="3_3aawj"]
+[ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
+[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
+[ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
+[ext_resource type="Script" path="res://Scripts/CamController.gd" id="6_2oujn"]
+[ext_resource type="PackedScene" uid="uid://c68y087mlmcx3" path="res://assets/main_char.tscn" id="6_mmxtj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63w50"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5j2p"]
 albedo_color = Color(0.847474, 0.847474, 0.847474, 1)
-albedo_texture = ExtResource("1_4rhxx")
+albedo_texture = ExtResource("1_pyjtt")
 albedo_texture_force_srgb = true
-roughness_texture = ExtResource("3_3aawj")
+roughness_texture = ExtResource("4_w6vwm")
 normal_enabled = true
 normal_scale = -2.11
-normal_texture = ExtResource("2_v1ddw")
-uv1_scale = Vector3(8.1, 8.1, 8.1)
+normal_texture = ExtResource("3_3vwth")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_nopxy")
+uv1_scale = Vector3(0.015, 0.015, 0.015)
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_60mjx"]
 material = SubResource("StandardMaterial3D_w5j2p")
+size = Vector3(250, 1, 250)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8c8ni"]
 
@@ -29,29 +34,15 @@ material = SubResource("StandardMaterial3D_w5j2p")
 [node name="Main_Level" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
+rotation_order = 0
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
 shape = SubResource("BoxShape3D_63w50")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
 mesh = SubResource("BoxMesh_60mjx")
-
-[node name="MainCharacter" parent="." instance=ExtResource("1_3asy4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11792, 0)
-collision_layer = 2
-collision_mask = 3
-
-[node name="Node3D" type="Node3D" parent="MainCharacter"]
-transform = Transform3D(1, 0, 0, 0, 0.902134, 0.431456, 0, -0.431456, 0.902134, 0.0053134, 3.61378, 6.38711)
-
-[node name="InterpolatedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.949819, 0.312799, 0, -0.312799, 0.949819, 0.0053134, 13.3094, 23.2317)
-script = ExtResource("2_unhei")
-translate_speed = 0.4
-near_far_speed = 0.4
-target = NodePath("../MainCharacter/Node3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.39155, 0.920157, 0, -0.920157, -0.39155, 0, 34.0209, 0)
@@ -77,3 +68,19 @@ shape = SubResource("BoxShape3D_8c8ni")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
 mesh = SubResource("BoxMesh_rfj4p")
+
+[node name="MainChar" parent="." groups=["MainChar"] instance=ExtResource("6_mmxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501709, 0)
+
+[node name="Node3D" type="Node3D" parent="." groups=["CameraController"]]
+script = ExtResource("6_2oujn")
+
+[node name="LookAt" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64153, 27.339)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91382, 1.98575)
+collision_mask = 4
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.98901)
