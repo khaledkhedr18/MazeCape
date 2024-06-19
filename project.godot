@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="MazeCape"
+run/main_scene="res://assets/main_level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [editor_plugins]
 

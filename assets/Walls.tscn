@@ -1,0 +1,60 @@
+[gd_scene load_steps=15 format=3 uid="uid://dhvhxsnprvqft"]
+
+[ext_resource type="Texture2D" uid="uid://ovagawf6w31l" path="res://imports/Walls/Bricks092_2K-PNG_Color.png" id="1_u4s1i"]
+[ext_resource type="Texture2D" uid="uid://b617kg85frg8y" path="res://imports/Walls/Bricks092_2K-PNG_AmbientOcclusion.png" id="2_0bxni"]
+[ext_resource type="Texture2D" uid="uid://dr1pdg3nfsyyw" path="res://imports/Walls/Bricks092_2K-PNG_Displacement.png" id="3_v30od"]
+[ext_resource type="Texture2D" uid="uid://cq3ycqbs0gxux" path="res://imports/Walls/Bricks092_2K-PNG_NormalGL.png" id="4_uuaxb"]
+[ext_resource type="Texture2D" uid="uid://b2kmmehl3mnqt" path="res://imports/Walls/Bricks092_2K-PNG_Roughness.png" id="5_wxkrn"]
+[ext_resource type="Texture2D" uid="uid://cmudgx70454xt" path="res://imports/Wall2/Metal046B_2K-PNG_Color.png" id="6_2uqqa"]
+[ext_resource type="Texture2D" uid="uid://dewn6evdw4oni" path="res://imports/Wall2/Metal046B_2K-PNG_Metalness.png" id="7_ofxro"]
+[ext_resource type="Texture2D" uid="uid://b3ljy638u3my3" path="res://imports/Wall2/Metal046B_2K-PNG_NormalGL.png" id="8_14f3t"]
+[ext_resource type="Texture2D" uid="uid://blvf0lf66bgev" path="res://imports/Wall2/Metal046B_2K-PNG_Roughness.png" id="9_mix22"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0r36"]
+albedo_texture = ExtResource("1_u4s1i")
+roughness_texture = ExtResource("5_wxkrn")
+normal_enabled = true
+normal_texture = ExtResource("4_uuaxb")
+ao_enabled = true
+ao_texture = ExtResource("2_0bxni")
+heightmap_texture = ExtResource("3_v30od")
+
+[sub_resource type="BoxMesh" id="BoxMesh_im6c0"]
+material = SubResource("StandardMaterial3D_x0r36")
+size = Vector3(1, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hqlgb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ac8k"]
+albedo_texture = ExtResource("6_2uqqa")
+metallic = 1.0
+metallic_texture = ExtResource("7_ofxro")
+roughness_texture = ExtResource("9_mix22")
+normal_enabled = true
+normal_texture = ExtResource("8_14f3t")
+heightmap_texture = ExtResource("3_v30od")
+
+[sub_resource type="BoxMesh" id="BoxMesh_jt5gp"]
+material = SubResource("StandardMaterial3D_5ac8k")
+size = Vector3(1, 10, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Brick Wall" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_im6c0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Brick Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brick Wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 10.1006, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hqlgb")
+
+[node name="Metal Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79245, 0, 0)
+mesh = SubResource("BoxMesh_jt5gp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Metal Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Metal Wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 10.098, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hqlgb")
