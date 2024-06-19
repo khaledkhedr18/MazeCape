@@ -1,18 +1,24 @@
 extends Node3D
 
-@export var sensitivity : int = 3
+var myPlayer
+@export var sensitivity := 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	myPlayer = get_tree().get_nodes_in_group("MainChar")[0]
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position = get_tree().get_nodes_in_group("MainChar")[0].global_position
+	global_position = myPlayer.global_position
+	$SpringArm3D/Camera3D.look_at(myPlayer.get_node("LookAt").global_position)
 	pass
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotation = Vector3(clamp(rotation.x - event.relative.y / 1000 * sensitivity,-1, .25), rotation.y - event.relative.x / 1000 * sensitivity, 0)
+		var tempRot = rotation.x - event.relative.y / 1000 * sensitivity
+		rotation.y -= event.relative.x / 1000 * sensitivity
+		tempRot = clamp(tempRot, -1, -.1)
+		rotation.x = tempRot
