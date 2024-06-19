@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:imports/Wall2/Metal046B.png.import
-uid="uid://dokje1vde0npl"
-path="res://.godot/imported/Metal046B.png-ff556e6d0ee0c916784fe6fe2848325e.ctex"
-========
-uid="uid://cfhpusjiddnpc"
+uid="uid://blba74frg81dk"
 path="res://.godot/imported/Metal046B_2K-PNG_Displacement.png-6e46588de2dfc4254ea6ef2dd3d3c316.ctex"
->>>>>>>> cfe93570e7cbf6b1f556628ca3524d051e5e8309:imports/Wall2/Metal046B_2K-PNG_Displacement.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:imports/Wall2/Metal046B.png.import
-source_file="res://imports/Wall2/Metal046B.png"
-dest_files=["res://.godot/imported/Metal046B.png-ff556e6d0ee0c916784fe6fe2848325e.ctex"]
-========
 source_file="res://imports/Wall2/Metal046B_2K-PNG_Displacement.png"
 dest_files=["res://.godot/imported/Metal046B_2K-PNG_Displacement.png-6e46588de2dfc4254ea6ef2dd3d3c316.ctex"]
->>>>>>>> cfe93570e7cbf6b1f556628ca3524d051e5e8309:imports/Wall2/Metal046B_2K-PNG_Displacement.png.import
 
 [params]
 

@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:imports/Floor/Ground068.png.import
-uid="uid://x4gi60wu0pw4"
-path="res://.godot/imported/Ground068.png-d2e15693a3e5e47590edc74edf26545c.ctex"
-========
-uid="uid://l6xkhg7u61yd"
+uid="uid://cjtx12r3bdxmu"
 path="res://.godot/imported/Metal046B.png-ff556e6d0ee0c916784fe6fe2848325e.ctex"
->>>>>>>> cfe93570e7cbf6b1f556628ca3524d051e5e8309:imports/Wall2/Metal046B.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:imports/Floor/Ground068.png.import
-source_file="res://imports/Floor/Ground068.png"
-dest_files=["res://.godot/imported/Ground068.png-d2e15693a3e5e47590edc74edf26545c.ctex"]
-========
 source_file="res://imports/Wall2/Metal046B.png"
 dest_files=["res://.godot/imported/Metal046B.png-ff556e6d0ee0c916784fe6fe2848325e.ctex"]
->>>>>>>> cfe93570e7cbf6b1f556628ca3524d051e5e8309:imports/Wall2/Metal046B.png.import
 
 [params]
 
