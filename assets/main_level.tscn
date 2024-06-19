@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
-[ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
 [ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
 [ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
 [ext_resource type="Script" path="res://Scripts/CamController.gd" id="6_2oujn"]
