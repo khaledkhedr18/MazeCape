@@ -1,3 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 imports/MainChar/MainChar.glb
+imports/MainChar.glb
