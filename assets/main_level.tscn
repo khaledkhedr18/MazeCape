@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=12 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
-[ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
 [ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
 [ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
-[ext_resource type="Script" path="res://Scripts/CamController.gd" id="6_2oujn"]
 [ext_resource type="PackedScene" uid="uid://c68y087mlmcx3" path="res://assets/main_char.tscn" id="6_mmxtj"]
 [ext_resource type="MeshLibrary" uid="uid://dxhomqam5bhjw" path="res://assets/wallscollision2.tres" id="7_plhwx"]
 
@@ -72,19 +71,6 @@ mesh = SubResource("BoxMesh_rfj4p")
 
 [node name="MainChar" parent="." groups=["MainChar"] instance=ExtResource("6_mmxtj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8367, 0.501709, -68.1349)
-
-[node name="Node3D" type="Node3D" parent="." groups=["CameraController"]]
-script = ExtResource("6_2oujn")
-
-[node name="LookAt" type="Node3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64153, 27.339)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91382, 1.98575)
-collision_mask = 4
-
-[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.98901)
 
 [node name="Edges" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.488261, 0)

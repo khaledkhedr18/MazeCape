@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://x0a44lqh6uuf"]
+
+[ext_resource type="PackedScene" uid="uid://druqgpihwwuo7" path="res://imports/Assault Rifle.glb" id="1_jvolv"]
+
+[node name="Assault Rifle" instance=ExtResource("1_jvolv")]
