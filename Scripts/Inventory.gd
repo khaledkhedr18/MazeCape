@@ -26,8 +26,8 @@ func Add(item):
 	items.append(item)
 
 
-func updateButton(index : int):
-	if range(items.size().has(i)):
+#func updateButton(index : int):
+	#if range(items.size().has(i)):
 
 
 
