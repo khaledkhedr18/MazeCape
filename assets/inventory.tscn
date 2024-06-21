@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3tvon5flwym"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_yvwxx"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yvwxx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -90.0
+offset_right = 111.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 506.0
+offset_right = 705.0
+offset_bottom = 537.0
+scale = Vector2(0.872572, 1.14226)
+text = "Add item"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvoeffg400aon"]
+
+[ext_resource type="PackedScene" uid="uid://wqcxphgpga2v" path="res://imports/Chest/treasure_chest_animation.glb" id="1_1wpoh"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_1wpoh")]
+
+[node name="CTRL_Main_Body" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/Controls/CTRL_Global_Scale_Move" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.31089e-30, 123.984, -52.9181)
+
+[node name="CTRL_R_Handle" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/Controls/CTRL_Global_Scale_Move/CTRL_Main_Body/CTRL_R_Handle_CG" index="0"]
+transform = Transform3D(1, -2.76031e-17, 4.33681e-19, 2.76031e-17, 1, 3.46945e-18, -4.33681e-19, -3.46945e-18, 1, -2.42556e-06, -5.51449e-06, -1.13212e-07)
+
+[node name="CTRL_L_Handle" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/Controls/CTRL_Global_Scale_Move/CTRL_Main_Body/CTRL_L_Handle_CG" index="0"]
+transform = Transform3D(1, 2.76268e-17, 0, -2.76268e-17, 1, 0, 0, 0, 1, -3.36014e-06, -2.63753e-06, -1.90067e-07)
+
+[node name="CTRL_Lid" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/Controls/CTRL_Global_Scale_Move/CTRL_Main_Body" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4869e-14, 37.5761, -58.7955)
+
+[node name="chest_handle_left_g" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/DO_NOT_TOUCH/Mesh" index="0"]
+transform = Transform3D(1, -1.40208e-31, -3.60822e-16, -1.40208e-31, 1, -7.77156e-16, 3.60822e-16, 7.77156e-16, 1, 160.704, 116.122, 0.800534)
+
+[node name="chest_handle_right_g" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/DO_NOT_TOUCH/Mesh" index="1"]
+transform = Transform3D(1, -4.996e-16, 2.08167e-16, 4.996e-16, 1, -8.88178e-16, -2.08167e-16, 8.88178e-16, 1, -157.896, 117.127, 0.719265)
+
+[node name="chest_lid_g" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/DO_NOT_TOUCH/Mesh" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500082, 156.356, -118.337)
+
+[node name="chest_base_g" parent="Sketchfab_model/7c1e868887484038a9d51fa41bb40886_fbx/Object_2/RootNode/Treasure_Chest_Rig/DO_NOT_TOUCH/Mesh" index="3"]
+transform = Transform3D(1, -5.55112e-16, 8.1879e-16, 5.55112e-16, 1, 2.2726e-31, -8.1879e-16, 2.2726e-31, 1, 0, 0, 7.10543e-15)
