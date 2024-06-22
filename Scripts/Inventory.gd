@@ -139,7 +139,7 @@ func updateButton(index : int):
 
 func OnButtonClicked(index, CurrentItem):
 	var itemNum
-	if CurrentItem != null:
+	if CurrentItem != null && Input.is_action_just_pressed("Throw"):
 		CurrentItem.UseItem()
 		CurrentItem.Quantity -= 1
 		print(CurrentItem.Quantity)
