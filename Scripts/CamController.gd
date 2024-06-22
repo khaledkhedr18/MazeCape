@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && !$"../Inventory".visible:
 		var tempRot = rotation.x - event.relative.y / 1000 * sensitivity
 		rotation.y -= event.relative.x / 1000 * sensitivity
 		tempRot = clamp(tempRot, -1, -.1)

@@ -10,9 +10,17 @@ var lookat
 var lastLookAtDirection : Vector3
 func _ready():
 	lookat = get_tree().get_nodes_in_group("CameraController")[0].get_node("LookAt")
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
 	# Add the gravity.
+	if Input.is_action_just_pressed("Inventory"):
+		$"../Inventory".visible = !$"../Inventory".visible
+		if $"../Inventory".visible:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 

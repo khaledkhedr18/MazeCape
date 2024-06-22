@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj3tvon5flwym"]
+[gd_scene load_steps=6 format=3 uid="uid://dj3tvon5flwym"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_yvwxx"]
+[ext_resource type="PackedScene" uid="uid://dhhklx2pe0a6n" path="res://assets/InventoryButton.tscn" id="2_3shqk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70ep6"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.486275)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftfls"]
+size = Vector2(31.1284, 30.7895)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_unerf"]
+radius = 2.0
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -11,6 +21,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yvwxx")
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -148.0
+offset_right = 55.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.44, 1.48)
+theme_override_styles/panel = SubResource("StyleBoxFlat_70ep6")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -18,28 +44,97 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -106.0
-offset_top = -90.0
-offset_right = 111.0
-offset_bottom = 85.0
+offset_left = -115.0
+offset_top = -98.5
+offset_right = 115.0
+offset_bottom = 98.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
 
-[node name="Button" type="Button" parent="."]
+[node name="Add_Item" type="Button" parent="."]
 layout_mode = 0
-offset_left = 627.0
-offset_top = 506.0
-offset_right = 705.0
-offset_bottom = 537.0
+offset_left = 649.0
+offset_top = 522.0
+offset_right = 727.0
+offset_bottom = 553.0
 scale = Vector2(0.872572, 1.14226)
+size_flags_vertical = 8
 text = "Add item"
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[node name="Remove_Item" type="Button" parent="."]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 523.0
+offset_right = 855.0
+offset_bottom = 554.0
+scale = Vector2(0.872572, 1.14226)
+size_flags_vertical = 8
+text = "Remove Item"
+
+[node name="Add_Item2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 522.0
+offset_right = 521.0
+offset_bottom = 553.0
+scale = Vector2(0.872572, 1.14226)
+size_flags_vertical = 8
+text = "Add item2"
+
+[node name="Remove_Item2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 523.0
+offset_right = 649.0
+offset_bottom = 554.0
+scale = Vector2(0.872572, 1.14226)
+size_flags_vertical = 8
+text = "Remove Item2"
+
+[node name="Trash" type="Button" parent="."]
+layout_mode = 2
+offset_left = 704.0
+offset_top = 455.0
+offset_right = 734.0
+offset_bottom = 486.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.56256, 1.52)
+size_flags_vertical = 8
+text = "T"
+
+[node name="TrashArea" type="Area2D" parent="Trash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trash/TrashArea"]
+position = Vector2(15.3594, 15.3947)
+shape = SubResource("RectangleShape2D_ftfls")
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("CircleShape2D_unerf")
+
+[node name="InventoryButton" parent="MouseArea" instance=ExtResource("2_3shqk")]
+visible = false
+offset_left = -21.0
+offset_top = -20.0
+offset_right = 19.0
+offset_bottom = 20.0
+
+[connection signal="button_down" from="Add_Item" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Remove_Item" to="." method="_on_remove_item_button_down"]
+[connection signal="button_down" from="Add_Item2" to="." method="_on_add_item_2_button_down"]
+[connection signal="button_down" from="Remove_Item2" to="." method="_on_remove_item_2_button_down"]
+[connection signal="area_entered" from="Trash/TrashArea" to="." method="_on_trash_area_area_entered"]
+[connection signal="area_exited" from="Trash/TrashArea" to="." method="_on_trash_area_area_exited"]
+[connection signal="area_entered" from="MouseArea" to="." method="_on_mouse_area_entered"]
+[connection signal="area_exited" from="MouseArea" to="." method="_on_mouse_area_exited"]

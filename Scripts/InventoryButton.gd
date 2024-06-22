@@ -23,6 +23,14 @@ func UpdateItem(item, index):
 	self.index = index
 	currentItem = item
 
+	if currentItem == null:
+		currentIcon.texture = null
+		currentLabel.text = ""
+
+	else:
+		currentIcon.texture = item.Icon
+		currentLabel.text = str(item.Quantity)
+
 func _on_area_2d_area_entered(area):
 	pass # Replace with function body.
 
