@@ -14,16 +14,20 @@ const base_fov=75
 const fov_change=1.5
 var velocity_clamped=clamp(velocity.length(),0.5,SPRINT_SPEED*2)
 var target_fov=base_fov+fov_change*velocity_clamped
-@onready var anim_r=$AnimationPlayer
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var gun_anim=$head/Camera3D/newrif/AnimationPlayer
+@onready var aimray=$head/Camera3D/aimray
 @onready var head =$head
 @onready var cam =$head/Camera3D
-
+@onready var aimrayend=$head/Camera3D/aimrayend
+@onready var barrel=$head/Camera3D/newrif/barrel
+var bullet_trail=load("res://assets/bullet_trail.tscn")
+var instance
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -31,11 +35,6 @@ func _input(event):
 		look_rot.x+=(event.relative.y*sensitivity)
 		look_rot.x=clamp(look_rot.x,min_a,max_a)
 		
-		
-		
-	
-
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -53,10 +52,6 @@ func _physics_process(delta):
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed 
-	
-			
-			
-			
 		else:
 			velocity.x=lerp(velocity.x,direction.x*speed,delta *7)
 			velocity.z=lerp(velocity.z,direction.z*speed,delta *7)
@@ -64,11 +59,19 @@ func _physics_process(delta):
 	else:
 		velocity.x=lerp(velocity.x,direction.x*speed,delta *2)
 		velocity.z=lerp(velocity.z,direction.z*speed,delta *2)
-		
-		
-		
-	
-		
+	if Input.is_action_pressed("shoot"):
+		if ! gun_anim.is_playing():
+			gun_anim.play("shoot")
+			instance = bullet_trail.instantiate()
+			if aimray.is_colliding():
+				instance.init(barrel.global_position,aimray.get_collision_point())
+				if aimray.get_collider().is_in_group("enemy"):
+					aimray.get_collider().hit()
+			else:
+					instance.init(barrel.global_position,aimrayend.global_position)
+			get_parent().add_child(instance)
+				
+
 	t_bob+=delta *velocity.length() * float(is_on_floor())
 	cam.transform.origin=_headbob(t_bob)
 	if Input.is_action_pressed("sprint"):
@@ -80,9 +83,9 @@ func _physics_process(delta):
 	
 		
 	
-	$AnimationTree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
-	$AnimationTree.set("parameters/conditions/moving", direction != Vector3.ZERO && is_on_floor())
-	$AnimationTree.set("parameters/conditions/firing", Input.is_action_pressed("fire"))
+	#$AnimationTree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
+	#$AnimationTree.set("parameters/conditions/moving", direction != Vector3.ZERO && is_on_floor())
+	#$AnimationTree.set("parameters/conditions/firing", Input.is_action_pressed("fire"))
 	
 	#$AnimationTree.set("parameters/BlendSpace2D/blend_position", -input_dir)
 	#$AnimationTree.set("parameters/conditions/straifLeft", input_dir.x == -1 && is_on_floor())
