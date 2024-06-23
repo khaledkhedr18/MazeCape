@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=16 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
 [ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
@@ -9,6 +9,7 @@
 [ext_resource type="MeshLibrary" uid="uid://dxhomqam5bhjw" path="res://assets/wallscollision2.tres" id="7_plhwx"]
 [ext_resource type="PackedScene" uid="uid://dj3tvon5flwym" path="res://assets/inventory.tscn" id="8_qt7s5"]
 [ext_resource type="PackedScene" uid="uid://dhf163fokfpjf" path="res://assets/InventoryIcon.tscn" id="9_axcoq"]
+[ext_resource type="PackedScene" uid="uid://bvoeffg400aon" path="res://assets/Chest.tscn" id="10_j7j1n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63w50"]
 
@@ -109,3 +110,6 @@ data = {
 
 [node name="Inventory" parent="." instance=ExtResource("8_qt7s5")]
 visible = false
+
+[node name="Chest1" parent="." instance=ExtResource("10_j7j1n")]
+transform = Transform3D(0.869014, 0, 0, 0, 0.869014, 0, 0, 0, 0.869014, -20.4811, 0.553088, -74)
