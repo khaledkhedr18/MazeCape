@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c68y087mlmcx3"]
+[gd_scene load_steps=6 format=3 uid="uid://c68y087mlmcx3"]
 
 [ext_resource type="Script" path="res://Scripts/main_char.gd" id="1_48kol"]
 [ext_resource type="PackedScene" uid="uid://d0s21ppsnj7ga" path="res://assets/newrif.tscn" id="2_0olcy"]
+[ext_resource type="PackedScene" uid="uid://catp65un0gqi4" path="res://Interact/interact_ray.tscn" id="3_nhoe5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hylir"]
 
@@ -16,7 +17,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144958, 0.834784, 0)
 mesh = SubResource("CapsuleMesh_hylir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146725, 0.892083, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.20258, 0.146725, 0.892083, 0.330183)
 shape = SubResource("CapsuleShape3D_nqkxh")
 
 [node name="head" type="Node3D" parent="."]
@@ -35,3 +36,6 @@ collide_with_areas = true
 
 [node name="aimrayend" type="Node3D" parent="head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -301)
+
+[node name="InteractRay" parent="." instance=ExtResource("3_nhoe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11124, 0.552357)

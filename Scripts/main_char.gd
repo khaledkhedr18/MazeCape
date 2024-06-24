@@ -30,7 +30,7 @@ func _ready():
 
 	
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && !$"../Inventory".visible:
 		look_rot.y-=(event.relative.x*sensitivity)
 		look_rot.x+=(event.relative.y*sensitivity)
 		look_rot.x=clamp(look_rot.x,min_a,max_a)
@@ -39,6 +39,12 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	if Input.is_action_just_pressed("Inventory"):
+		$"../Inventory".visible = !$"../Inventory".visible
+		if $"../Inventory".visible:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -59,7 +65,7 @@ func _physics_process(delta):
 	else:
 		velocity.x=lerp(velocity.x,direction.x*speed,delta *2)
 		velocity.z=lerp(velocity.z,direction.z*speed,delta *2)
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") && !$"../Inventory".visible:
 		if ! gun_anim.is_playing():
 			gun_anim.play("shoot")
 			instance = bullet_trail.instantiate()
@@ -92,7 +98,8 @@ func _physics_process(delta):
 	#$AnimationTree.set("parameters/conditions/straifRight", input_dir.x == 1 && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/falling", !is_on_floor())
 	#$AnimationTree.set("parameters/conditions/landed", is_on_floor())
-	move_and_slide()
+	if !$"../Inventory".visible:
+		move_and_slide()
 	head.rotation_degrees.x=look_rot.x
 	rotation_degrees.y=look_rot.y
 func _headbob(time) -> Vector3:

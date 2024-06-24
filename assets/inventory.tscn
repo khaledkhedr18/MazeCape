@@ -102,10 +102,10 @@ text = "Remove Item2"
 
 [node name="Trash" type="Button" parent="."]
 layout_mode = 2
-offset_left = 704.0
-offset_top = 455.0
-offset_right = 734.0
-offset_bottom = 486.0
+offset_left = 668.0
+offset_top = 423.0
+offset_right = 698.0
+offset_bottom = 454.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.56256, 1.52)
