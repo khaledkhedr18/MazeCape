@@ -181,3 +181,16 @@ func _on_remove_item_2_button_down():
 
 func _on_add_item_2_button_down():
 	Add(ResourceLoader.load("res://Item2.tres"))
+
+
+func PickupItem(item: Resource):
+	Add(item)
+
+
+func UseItem(item: Resource):
+	if item != null:
+		item.UseItem()
+		item.Quantity -= 1
+		if item.Quantity == 0:
+			Remove(item)
+		reflowButtons()

@@ -113,3 +113,7 @@ Inventory={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Items"
+
+[physics]
+
+common/physics_ticks_per_second=180
