@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhhklx2pe0a6n"]
+
+[ext_resource type="Script" path="res://Scripts/InventoryButton.gd" id="1_anexk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajpa"]
+size = Vector2(40, 40)
+
+[node name="InventoryButton" type="Button"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 534.0
+offset_top = 270.0
+offset_right = 574.0
+offset_bottom = 310.0
+script = ExtResource("1_anexk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_aajpa")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

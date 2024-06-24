@@ -1,13 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=20 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Script" path="res://Scripts/main_level.gd" id="1_b1ypq"]
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
-[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
 [ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
 [ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
 [ext_resource type="PackedScene" uid="uid://c68y087mlmcx3" path="res://assets/main_char.tscn" id="6_mmxtj"]
 [ext_resource type="MeshLibrary" uid="uid://dxhomqam5bhjw" path="res://assets/wallscollision2.tres" id="7_plhwx"]
 [ext_resource type="Texture2D" uid="uid://cxqm2g2p22jjq" path="res://imports/rifle/hit.png" id="8_hhpmb"]
+[ext_resource type="PackedScene" uid="uid://bvoeffg400aon" path="res://assets/Chest.tscn" id="9_7scvt"]
+[ext_resource type="PackedScene" uid="uid://dhf163fokfpjf" path="res://assets/InventoryIcon.tscn" id="10_4armb"]
+[ext_resource type="PackedScene" uid="uid://dj3tvon5flwym" path="res://assets/inventory.tscn" id="11_kupj2"]
+[ext_resource type="PackedScene" uid="uid://cybr4vikflm5y" path="res://assets/door.tscn" id="12_s4ypn"]
+[ext_resource type="PackedScene" uid="uid://vxcbcpmrkctj" path="res://assets/button.tscn" id="13_u4hqc"]
+[ext_resource type="PackedScene" uid="uid://dtfxymin373ta" path="res://assets/key_card.tscn" id="14_jg0m0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63w50"]
 
@@ -104,3 +110,26 @@ layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
 texture = ExtResource("8_hhpmb")
+
+[node name="Chest" parent="." instance=ExtResource("9_7scvt")]
+transform = Transform3D(-0.645138, 0, -8.74228e-08, 0, 0.645138, 0, 5.63997e-08, 0, -1, -22.6738, 0.528666, -63.269)
+
+[node name="InventoryIcon" parent="." instance=ExtResource("10_4armb")]
+
+[node name="Inventory" parent="." instance=ExtResource("11_kupj2")]
+visible = false
+
+[node name="Door And Button" type="Node3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -18.8548, 5.09443, -61.3174)
+
+[node name="Door" parent="Door And Button" instance=ExtResource("12_s4ypn")]
+
+[node name="Button" parent="Door And Button" instance=ExtResource("13_u4hqc")]
+transform = Transform3D(-1, 2.6054e-15, 8.74228e-08, -8.74228e-08, -2.98023e-08, -1, 0, -1, 2.98023e-08, -2.7659, 3.1272, -0.650204)
+prompt_input = "interact"
+
+[node name="KeyCard" parent="." instance=ExtResource("14_jg0m0")]
+transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, -22.6602, 1.15232, -63.3197)
+prompt_input = "interact"
+
+[connection signal="interacted" from="Door And Button/Button" to="Door And Button/Door" method="toggle"]

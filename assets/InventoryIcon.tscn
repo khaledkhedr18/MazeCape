@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhf163fokfpjf"]
+
+[ext_resource type="Texture2D" uid="uid://dybh67ofpmfqg" path="res://imports/backpack.png" id="1_1kqyk"]
+[ext_resource type="FontFile" uid="uid://ds5pig7oo1x48" path="res://Fonts/Rich Eatin'.otf" id="2_03tqj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 559.0
+offset_right = 88.0
+offset_bottom = 645.0
+icon = ExtResource("1_1kqyk")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_top = -6.0
+offset_right = -9.99999
+offset_bottom = 12.0
+grow_horizontal = 0
+scale = Vector2(1.68, 1.68)
+theme_override_fonts/font = ExtResource("2_03tqj")
+text = "I"
