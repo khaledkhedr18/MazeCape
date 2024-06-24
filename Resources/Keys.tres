@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_mf57k")
-ID = 10
+ID = 1
 Name = "Keycard"
 ResourcePath = ""
 Icon = ExtResource("1_x023f")

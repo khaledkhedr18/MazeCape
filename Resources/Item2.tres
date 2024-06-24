@@ -12,3 +12,4 @@ Icon = ExtResource("1_ubnmj")
 Quantity = 1
 StackSize = 10
 IsStackable = true
+Usable = true

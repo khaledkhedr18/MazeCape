@@ -1,4 +1,5 @@
 extends CharacterBody3D
+var inventory
 var look_rot:Vector2
 var speed=0
 const WALK_SPEED = 5.0
@@ -27,6 +28,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	inventory = get_node("../Inventory")
 
 	
 func _input(event):
@@ -45,6 +47,7 @@ func _physics_process(delta):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

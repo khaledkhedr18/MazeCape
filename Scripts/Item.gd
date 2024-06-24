@@ -8,6 +8,7 @@ extends Resource
 @export var Quantity : int
 @export var StackSize : int
 @export var IsStackable : bool
+@export var Usable : bool
 
 
 func UseItem():

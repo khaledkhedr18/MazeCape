@@ -138,7 +138,7 @@ func updateButton(index : int):
 
 
 func OnButtonClicked(index, CurrentItem):
-	if CurrentItem != null && Input.is_action_just_pressed("Throw"):
+	if CurrentItem != null && Input.is_action_just_pressed("Throw") && CurrentItem.Usable:
 		CurrentItem.UseItem()
 		CurrentItem.Quantity -= 1
 		print(CurrentItem.Quantity)
@@ -150,11 +150,11 @@ func OnButtonClicked(index, CurrentItem):
 
 
 func _on_button_button_down():
-	Add(ResourceLoader.load("res://Item.tres"))
+	Add(ResourceLoader.load("res://Resources/Item.tres"))
 
 
 func _on_remove_item_button_down():
-	Remove(ResourceLoader.load("res://Item.tres"))
+	Remove(ResourceLoader.load("res://Resources/Item.tres"))
 
 
 func _on_mouse_area_entered(area):
@@ -176,15 +176,19 @@ func _on_trash_area_area_exited(area):
 
 
 func _on_remove_item_2_button_down():
-	Remove(ResourceLoader.load("res://Item2.tres"))
+	Remove(ResourceLoader.load("res://Resources/Item2.tres"))
 
 
 func _on_add_item_2_button_down():
-	Add(ResourceLoader.load("res://Item2.tres"))
+	Add(ResourceLoader.load("res://Resources/Item2.tres"))
 
 
 func PickupItem(item: Resource):
-	Add(item)
+	if items.size() < capacity:
+		items.append(item)
+		reflowButtons()
+	else:
+		print("Inventory is full!")
 
 
 func UseItem(item: Resource):
@@ -194,3 +198,9 @@ func UseItem(item: Resource):
 		if item.Quantity == 0:
 			Remove(item)
 		reflowButtons()
+
+func has_item(item_name : String) -> bool:
+	for item in items:
+		if item.Name == item_name:
+			return true
+	return  false

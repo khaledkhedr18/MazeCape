@@ -1,5 +1,6 @@
 extends Interactable
 
+@export var Key : RigidBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,3 +18,4 @@ func _on_interacted(body):
 
 func _on_timer_timeout():
 	queue_free()
+	Key.visible = true
