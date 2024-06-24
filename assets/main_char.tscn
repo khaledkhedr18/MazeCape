@@ -38,4 +38,5 @@ collide_with_areas = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -301)
 
 [node name="InteractRay" parent="." instance=ExtResource("3_nhoe5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11124, 0.552357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.720042, 0.0141287)
+target_position = Vector3(0, 0, 2.5)
