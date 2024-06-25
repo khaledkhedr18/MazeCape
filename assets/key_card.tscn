@@ -53,7 +53,7 @@ shadow_mesh = SubResource("ArrayMesh_3vhar")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wscwc"]
 
-[node name="KeyCard" type="RigidBody3D"]
+[node name="KeyCard" type="StaticBody3D"]
 transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, 0, 0, 0)
 script = ExtResource("1_weqhc")
 prompt_message = "Pick Up"
