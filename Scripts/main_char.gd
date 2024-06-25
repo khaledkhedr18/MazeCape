@@ -1,9 +1,9 @@
 extends CharacterBody3D
 var look_rot:Vector2
 var speed=0
-const WALK_SPEED = 5.0
-const SPRINT_SPEED=10.0
-const JUMP_VELOCITY = 4.5
+var WALK_SPEED = 5.0
+var SPRINT_SPEED=10.0
+var JUMP_VELOCITY = 4.5
 const sensitivity =0.5
 var min_a=-50
 var max_a=60
@@ -12,15 +12,19 @@ const bob_amp =0.08
 var t_bob =0.0
 const base_fov=75
 const fov_change=1.5
+var hit_stagger=8
 var velocity_clamped=clamp(velocity.length(),0.5,SPRINT_SPEED*2)
 var target_fov=base_fov+fov_change*velocity_clamped
+signal player_hit
 @onready var gun_anim=$head/Camera3D/newrif/AnimationPlayer
 @onready var aimray=$head/Camera3D/aimray
 @onready var head =$head
 @onready var cam =$head/Camera3D
 @onready var aimrayend=$head/Camera3D/aimrayend
 @onready var barrel=$head/Camera3D/newrif/barrel
+var p_health=10
 var bullet_trail=load("res://assets/bullet_trail.tscn")
+var zombie=load("res://assets/Zombie.tscn")
 var instance
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -30,16 +34,17 @@ func _ready():
 
 	
 func _input(event):
-	if event is InputEventMouseMotion && !$"../Inventory".visible:
+	if event is InputEventMouseMotion && !$"../Inventory".visible && p_health>0:
 		look_rot.y-=(event.relative.x*sensitivity)
 		look_rot.x+=(event.relative.y*sensitivity)
 		look_rot.x=clamp(look_rot.x,min_a,max_a)
 		
 func _physics_process(delta):
-	# Add the gravity.
+	# Add the gravity
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	if Input.is_action_just_pressed("Inventory"):
+	if Input.is_action_just_pressed("Inventory") &&p_health>0:
 		$"../Inventory".visible = !$"../Inventory".visible
 		if $"../Inventory".visible:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -65,14 +70,19 @@ func _physics_process(delta):
 	else:
 		velocity.x=lerp(velocity.x,direction.x*speed,delta *2)
 		velocity.z=lerp(velocity.z,direction.z*speed,delta *2)
-	if Input.is_action_pressed("shoot") && !$"../Inventory".visible:
+	if Input.is_action_pressed("shoot") && !$"../Inventory".visible && p_health>0:
 		if ! gun_anim.is_playing():
 			gun_anim.play("shoot")
 			instance = bullet_trail.instantiate()
 			if aimray.is_colliding():
 				instance.init(barrel.global_position,aimray.get_collision_point())
+				get_parent().add_child(instance)
 				if aimray.get_collider().is_in_group("enemy"):
 					aimray.get_collider().hit()
+					instance.trigger_particles(aimray.get_collision_point(),barrel.global_position,true)
+				else:
+					instance.trigger_particles(aimray.get_collision_point(),barrel.global_position,false)
+					
 			else:
 					instance.init(barrel.global_position,aimrayend.global_position)
 			get_parent().add_child(instance)
@@ -85,6 +95,8 @@ func _physics_process(delta):
 	else:
 		speed=WALK_SPEED
 	cam.fov=lerp(cam.fov,target_fov,delta*8)
+	
+	
 	
 	
 		
@@ -107,5 +119,16 @@ func _headbob(time) -> Vector3:
 	pos.y =sin(time*bob_freq)*bob_amp
 	pos.x=cos(time*bob_freq/2)*bob_amp
 	return pos
+func hit(dir):
+	emit_signal("player_hit")
+	velocity+=dir*hit_stagger
+	
+	
+
 
 		
+
+
+
+	 
+	
