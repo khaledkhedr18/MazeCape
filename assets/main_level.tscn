@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=23 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Script" path="res://Scripts/main_level.gd" id="1_b1ypq"]
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://cybr4vikflm5y" path="res://assets/door.tscn" id="12_s4ypn"]
 [ext_resource type="PackedScene" uid="uid://vxcbcpmrkctj" path="res://assets/button.tscn" id="13_u4hqc"]
 [ext_resource type="PackedScene" uid="uid://dtfxymin373ta" path="res://assets/key_card.tscn" id="14_jg0m0"]
+[ext_resource type="PackedScene" uid="uid://dl1o4aqpk0fhg" path="res://assets/speed_potion.tscn" id="14_yv8e5"]
+[ext_resource type="PackedScene" uid="uid://bxuokrilk0sye" path="res://assets/HealthPotion.tscn" id="15_bmhoe"]
+[ext_resource type="PackedScene" uid="uid://dg5al23hx8t2c" path="res://assets/jump_potion.tscn" id="16_aebtg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63w50"]
 
@@ -112,18 +115,17 @@ offset_right = 128.0
 offset_bottom = 128.0
 texture = ExtResource("8_hhpmb")
 
-[node name="Chest" parent="." node_paths=PackedStringArray("Key") instance=ExtResource("9_7scvt")]
-transform = Transform3D(-0.645138, 0, -8.74228e-08, 0, 0.645138, 0, 5.63997e-08, 0, -1, -22.8066, 0.691939, -63.5299)
+[node name="Chest and Keycard 1" type="Node3D" parent="."]
+transform = Transform3D(0.620872, 0, 0, 0, 0.620872, -1.95399e-14, 0, 1.95399e-14, 0.620872, -22.8274, 1.39274, -63.4543)
+
+[node name="Chest" parent="Chest and Keycard 1" node_paths=PackedStringArray("Key") instance=ExtResource("9_7scvt")]
+transform = Transform3D(-1.03908, 0, -1.40806e-07, 2.85888e-21, 1.03908, -5.06896e-14, 9.08395e-08, -3.27018e-14, -1.61064, 0.0335007, -1.12873, -0.121758)
 Key = NodePath("../KeyCard")
 
-[node name="KeyCard" parent="." instance=ExtResource("14_jg0m0")]
-transform = Transform3D(0.620872, 0, 0, 0, -2.71392e-08, -0.620872, 0, 0.620872, -2.71392e-08, -22.8274, 0.577203, -63.4543)
+[node name="KeyCard" parent="Chest and Keycard 1" instance=ExtResource("14_jg0m0")]
+transform = Transform3D(1, 0, 0, 0, 1, 3.38813e-21, 0, -3.38813e-21, 1, 0, 0, 0)
 visible = false
-
-[node name="InventoryIcon" parent="." instance=ExtResource("10_4armb")]
-
-[node name="Inventory" parent="." instance=ExtResource("11_kupj2")]
-visible = false
+inventorypath = NodePath("../../Inventory")
 
 [node name="Door And Button" type="Node3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -18.8548, 5.09443, -61.3174)
@@ -133,4 +135,25 @@ transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -18.85
 [node name="Button" parent="Door And Button" node_paths=PackedStringArray("door") instance=ExtResource("13_u4hqc")]
 transform = Transform3D(-1, 2.6054e-15, 8.74228e-08, -8.74228e-08, -2.98023e-08, -1, 0, -1, 2.98023e-08, -2.7659, 3.1272, -0.650204)
 door = NodePath("../Door")
-prompt_input = "interact"
+
+[node name="Healthpotion" parent="." instance=ExtResource("15_bmhoe")]
+transform = Transform3D(0.173362, 0, 0, 0, 0.173362, 0, 0, 0, 0.173362, -22.7573, 1.73582, -65.7547)
+charpath = NodePath("../MainChar")
+inventorypath = NodePath("../Inventory")
+
+[node name="SpeedPotion" parent="." instance=ExtResource("14_yv8e5")]
+transform = Transform3D(0.173362, 0, 0, 0, 0.173362, 0, 0, 0, 0.173362, -24.8749, 1.73582, -65.7547)
+charpath = NodePath("../MainChar")
+inventorypath = NodePath("../Inventory")
+prompt_message = "Pick Up"
+
+[node name="JumpPotion" parent="." instance=ExtResource("16_aebtg")]
+transform = Transform3D(0.173362, 0, 0, 0, 0.173362, 0, 0, 0, 0.173362, -23.8051, 1.73582, -65.7547)
+charpath = NodePath("../MainChar")
+inventorypath = NodePath("../Inventory")
+
+[node name="InventoryIcon" parent="." instance=ExtResource("10_4armb")]
+
+[node name="Inventory" parent="." instance=ExtResource("11_kupj2")]
+visible = false
+charpath = NodePath("../MainChar")

@@ -11,13 +11,14 @@ height = 1.87452
 
 [node name="MainChar" type="CharacterBody3D"]
 script = ExtResource("1_48kol")
+Health = 50
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144958, 0.834784, 0)
 mesh = SubResource("CapsuleMesh_hylir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.20258, 0.146725, 0.892083, 0.330183)
+transform = Transform3D(1.24878, 0, 0, 0, 1.24878, 0, 0, 0, 1.24878, 0.141098, 0.891191, 0)
 shape = SubResource("CapsuleShape3D_nqkxh")
 
 [node name="head" type="Node3D" parent="."]
@@ -40,3 +41,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -301)
 [node name="InteractRay" parent="head/Camera3D" instance=ExtResource("3_nhoe5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00237021, -0.0872309, 0.398574)
 target_position = Vector3(0, 0, 2.5)
+collision_mask = 7
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="Stats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Health:
+"
+
+[node name="HealthFigure" type="Label" parent="Stats"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 56.0
+offset_bottom = 44.0
+text = "Q
+"
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

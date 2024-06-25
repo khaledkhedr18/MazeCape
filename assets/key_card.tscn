@@ -57,7 +57,6 @@ shadow_mesh = SubResource("ArrayMesh_3vhar")
 transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, 0, 0, 0)
 script = ExtResource("1_weqhc")
 prompt_message = "Pick Up"
-prompt_input = "interact"
 
 [node name="Keycard" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.330869, 0, 0, 0, 0.330869, 0, 0, 0, 0.330869, 0, 0, 0)

@@ -8,6 +8,9 @@ var grabbedButton
 var lastClickedMousePos : Vector2
 var overTrash
 
+@export var charpath : NodePath
+@onready var character = get_node(charpath)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gridContainer = $ScrollContainer/GridContainer
@@ -139,7 +142,7 @@ func updateButton(index : int):
 
 func OnButtonClicked(index, CurrentItem):
 	if CurrentItem != null && Input.is_action_just_pressed("Throw") && CurrentItem.Usable:
-		CurrentItem.UseItem()
+		CurrentItem.UseItem(character)
 		CurrentItem.Quantity -= 1
 		print(CurrentItem.Quantity)
 		reflowButtons()

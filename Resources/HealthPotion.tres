@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://drhelygcaof8t"]
+
+[ext_resource type="Texture2D" uid="uid://dvyhkamuya73q" path="res://imports/HealthPotion.png" id="1_wl1u5"]
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="2_h8y88"]
+
+[resource]
+script = ExtResource("2_h8y88")
+ID = 3
+Name = "Healthpotion"
+ResourcePath = ""
+Icon = ExtResource("1_wl1u5")
+Quantity = 1
+StackSize = 10
+IsStackable = true
+Usable = true

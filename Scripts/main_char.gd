@@ -1,10 +1,18 @@
 extends CharacterBody3D
 var inventory
 var look_rot:Vector2
-var speed=0
-const WALK_SPEED = 5.0
-const SPRINT_SPEED=10.0
-const JUMP_VELOCITY = 4.5
+var WALK_SPEED = 5.0
+var SPRINT_SPEED= WALK_SPEED * 2
+@export var Health = 100
+@export var max_health = 100
+@export var speed = 0
+@export var JUMP_VELOCITY = 4.5
+@export var normal_jump = 4.5
+@export var SuperJump = 13.5
+@export var normal_speed = WALK_SPEED
+@export var SuperSpeed = WALK_SPEED * 3
+@onready var SpeedTimer = $SpeedTimer
+@onready var Jumptimer = $JumpTimer
 const sensitivity =0.5
 var min_a=-50
 var max_a=60
@@ -29,14 +37,39 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	inventory = get_node("../Inventory")
-
+	Jumptimer.stop()
 	
 func _input(event):
 	if event is InputEventMouseMotion && !$"../Inventory".visible:
 		look_rot.y-=(event.relative.x*sensitivity)
 		look_rot.x+=(event.relative.y*sensitivity)
 		look_rot.x=clamp(look_rot.x,min_a,max_a)
-		
+
+
+func _on_jump_timer_timeout():
+	JUMP_VELOCITY = normal_jump
+
+
+func _on_speed_timer_timeout():
+	WALK_SPEED = normal_speed
+	SPRINT_SPEED = 10
+
+
+func use_speed_potion():
+	WALK_SPEED = SuperSpeed
+	SPRINT_SPEED = SuperSpeed + 5
+	SpeedTimer.start()
+
+
+func use_jump_potion():
+	JUMP_VELOCITY = SuperJump
+	Jumptimer.start()
+
+
+func UseItem(item):
+	item.UseItem(self)
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -47,7 +80,6 @@ func _physics_process(delta):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -89,9 +121,9 @@ func _physics_process(delta):
 		speed=WALK_SPEED
 	cam.fov=lerp(cam.fov,target_fov,delta*8)
 	
-	
+	$Stats/HealthFigure.text = str($".".Health)
 		
-	
+
 	#$AnimationTree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/moving", direction != Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/firing", Input.is_action_pressed("fire"))
@@ -111,4 +143,7 @@ func _headbob(time) -> Vector3:
 	pos.x=cos(time*bob_freq/2)*bob_amp
 	return pos
 
-		
+
+
+
+

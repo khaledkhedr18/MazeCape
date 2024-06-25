@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dnnfs02p11xhi"]
+
+[ext_resource type="Texture2D" uid="uid://uhi4kpbmo3bg" path="res://imports/JumpingPotion.png" id="1_q3ui7"]
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="2_gqqa1"]
+
+[resource]
+script = ExtResource("2_gqqa1")
+ID = 4
+Name = "Jumppotion"
+ResourcePath = ""
+Icon = ExtResource("1_q3ui7")
+Quantity = 1
+StackSize = 10
+IsStackable = true
+Usable = true

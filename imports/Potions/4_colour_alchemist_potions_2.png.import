@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b6jgkgvyxyhxe"
+path.s3tc="res://.godot/imported/4_colour_alchemist_potions_2.png-13852fd9d07ef46f8fcd46a916572199.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "90ef44c48866384e5ab5e9d7bd980077"
+}
+
+[deps]
+
+source_file="res://imports/Potions/4_colour_alchemist_potions_2.png"
+dest_files=["res://.godot/imported/4_colour_alchemist_potions_2.png-13852fd9d07ef46f8fcd46a916572199.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://imports/Potions/4_colour_alchemist_potions_2.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
