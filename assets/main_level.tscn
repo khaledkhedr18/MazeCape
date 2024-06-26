@@ -145,7 +145,6 @@ inventorypath = NodePath("../Inventory")
 transform = Transform3D(0.173362, 0, 0, 0, 0.173362, 0, 0, 0, 0.173362, -24.8749, 1.73582, -65.7547)
 charpath = NodePath("../MainChar")
 inventorypath = NodePath("../Inventory")
-prompt_message = "Pick Up"
 
 [node name="JumpPotion" parent="." instance=ExtResource("16_aebtg")]
 transform = Transform3D(0.173362, 0, 0, 0, 0.173362, 0, 0, 0, 0.173362, -23.8051, 1.73582, -65.7547)

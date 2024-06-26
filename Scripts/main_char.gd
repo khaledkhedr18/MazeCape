@@ -122,12 +122,11 @@ func _physics_process(delta):
 	cam.fov=lerp(cam.fov,target_fov,delta*8)
 	
 	$Stats/HealthFigure.text = str($".".Health)
-		
+
 
 	#$AnimationTree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/moving", direction != Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/firing", Input.is_action_pressed("fire"))
-	
 	#$AnimationTree.set("parameters/BlendSpace2D/blend_position", -input_dir)
 	#$AnimationTree.set("parameters/conditions/straifLeft", input_dir.x == -1 && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/straifRight", input_dir.x == 1 && is_on_floor())
