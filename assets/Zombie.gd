@@ -67,11 +67,9 @@ func _on_area_3d_body_part_hit(dam):
 	health -= dam
 	emit_signal("zombie_hit")
 	if health <= 0:
-		print("Zombie health is zero or less, dropping loot")
 		var loot = randpotion.instantiate()
 		loot.global_transform.origin = global_transform.origin
 		get_tree().root.add_child(loot)
-		print("Loot Dropped!")
 		await get_tree().create_timer(2).timeout
 		queue_free()
 	
