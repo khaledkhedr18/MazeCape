@@ -31,7 +31,6 @@ signal player_hit
 @onready var cam =$head/Camera3D
 @onready var aimrayend=$head/Camera3D/aimrayend
 @onready var barrel=$head/Camera3D/newrif/barrel
-var p_health=10
 var bullet_trail=load("res://assets/bullet_trail.tscn")
 var zombie=load("res://assets/Zombie.tscn")
 var instance
@@ -44,7 +43,7 @@ func _ready():
 	Jumptimer.stop()
 	
 func _input(event):
-	if event is InputEventMouseMotion && !$"../Inventory".visible && p_health>0:
+	if event is InputEventMouseMotion && !$"../Inventory".visible && Health>0:
 		look_rot.y-=(event.relative.x*sensitivity)
 		look_rot.x+=(event.relative.y*sensitivity)
 		look_rot.x=clamp(look_rot.x,min_a,max_a)
@@ -79,7 +78,7 @@ func _physics_process(delta):
 		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	if Input.is_action_just_pressed("Inventory") &&p_health>0:
+	if Input.is_action_just_pressed("Inventory") && Health > 0:
 		$"../Inventory".visible = !$"../Inventory".visible
 		if $"../Inventory".visible:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -105,7 +104,7 @@ func _physics_process(delta):
 	else:
 		velocity.x=lerp(velocity.x,direction.x*speed,delta *2)
 		velocity.z=lerp(velocity.z,direction.z*speed,delta *2)
-	if Input.is_action_pressed("shoot") && !$"../Inventory".visible && p_health>0:
+	if Input.is_action_pressed("shoot") && !$"../Inventory".visible && Health > 0:
 		if ! gun_anim.is_playing():
 			gun_anim.play("shoot")
 			instance = bullet_trail.instantiate()

@@ -2,7 +2,7 @@ extends Interactable
 
 @export var charpath : NodePath
 @onready var character := get_node(charpath)
-@export var inventorypath : NodePath
+var inventorypath = "/root/Main_Level/Inventory"
 @onready var inventory := get_node(inventorypath)
 var SpeedPotionResource = preload("res://Resources/SpeedPotion.tres")
 
