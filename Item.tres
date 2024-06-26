@@ -12,3 +12,4 @@ Icon = ExtResource("1_t7soe")
 Quantity = 1
 StackSize = 5
 IsStackable = true
+Usable = true

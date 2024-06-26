@@ -8,12 +8,14 @@ var grabbedButton
 var lastClickedMousePos : Vector2
 var overTrash
 
+@export var charpath : NodePath
+@onready var character = get_node(charpath)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
 	gridContainer = $ScrollContainer/GridContainer
 	populateButtons()
-	pass # Replace with function body.
 
 
 func _process(delta):
@@ -23,7 +25,7 @@ func _process(delta):
 func _input(event):
 	$MouseArea.position = get_tree().root.get_mouse_position()
 	if hoveredButton != null:
-		if Input.is_action_just_pressed("Throw"):
+		if Input.is_action_pressed("Throw"):
 			grabbedButton = hoveredButton
 			lastClickedMousePos = get_tree().root.get_mouse_position()
 
@@ -34,6 +36,7 @@ func _input(event):
 				$MouseArea/InventoryButton.show()
 				$MouseArea/InventoryButton.UpdateItem(grabbedButton.currentItem, 0)
 
+
 			if Input.is_action_just_released("Throw"):
 				if overTrash:
 					DeleteButton(grabbedButton)
@@ -41,12 +44,14 @@ func _input(event):
 					SwapButtons(grabbedButton, hoveredButton)
 					$MouseArea/InventoryButton.hide()
 
-
 	if Input.is_action_just_released("Throw") && $MouseArea/InventoryButton.visible:
 		$MouseArea/InventoryButton.hide()
 		if overTrash:
 			DeleteButton(grabbedButton)
 		grabbedButton = null
+
+	if Input.is_action_just_pressed("Itemuse"):
+		OnButtonClicked(hoveredButton.get_index(), hoveredButton.currentItem)
 
 
 func DeleteButton(button):
@@ -139,23 +144,21 @@ func updateButton(index : int):
 
 
 func OnButtonClicked(index, CurrentItem):
-	if CurrentItem != null && Input.is_action_just_pressed("Throw"):
-		CurrentItem.UseItem()
+	if CurrentItem != null && CurrentItem.Usable:
+		CurrentItem.UseItem(character)
 		CurrentItem.Quantity -= 1
 		print(CurrentItem.Quantity)
 		reflowButtons()
 		if CurrentItem.Quantity == 0:
 			Remove(CurrentItem)
-	else:
-		pass
 
 
 func _on_button_button_down():
-	Add(ResourceLoader.load("res://Item.tres"))
+	Add(ResourceLoader.load("res://Resources/Item.tres"))
 
 
 func _on_remove_item_button_down():
-	Remove(ResourceLoader.load("res://Item.tres"))
+	Remove(ResourceLoader.load("res://Resources/Item.tres"))
 
 
 func _on_mouse_area_entered(area):
@@ -177,15 +180,19 @@ func _on_trash_area_area_exited(area):
 
 
 func _on_remove_item_2_button_down():
-	Remove(ResourceLoader.load("res://Item2.tres"))
+	Remove(ResourceLoader.load("res://Resources/Item2.tres"))
 
 
 func _on_add_item_2_button_down():
-	Add(ResourceLoader.load("res://Item2.tres"))
+	Add(ResourceLoader.load("res://Resources/Item2.tres"))
 
 
 func PickupItem(item: Resource):
-	Add(item)
+	if items.size() < capacity:
+		items.append(item)
+		reflowButtons()
+	else:
+		print("Inventory is full!")
 
 
 func UseItem(item: Resource):
@@ -195,3 +202,9 @@ func UseItem(item: Resource):
 		if item.Quantity == 0:
 			Remove(item)
 		reflowButtons()
+
+func has_item(item_name : String) -> bool:
+	for item in items:
+		if item.Name == item_name:
+			return true
+	return  false

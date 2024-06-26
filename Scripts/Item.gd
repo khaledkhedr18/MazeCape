@@ -8,7 +8,24 @@ extends Resource
 @export var Quantity : int
 @export var StackSize : int
 @export var IsStackable : bool
+@export var Usable : bool
 
 
-func UseItem():
-	print("used item!!")
+func UseItem(character):
+	match ID:
+		3: # Health Potion ID
+			if character.Health < 100:
+				character.Health += 20
+			
+			if character.Health > 100:
+				character.Health = 100
+
+		4:
+			character.use_jump_potion()
+
+		5:
+			character.use_speed_potion()
+			
+		_:
+			print("Nope!")
+

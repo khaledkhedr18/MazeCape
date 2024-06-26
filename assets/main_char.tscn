@@ -100,3 +100,31 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_ken3n")
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="Stats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Health:"
+
+[node name="HealthFigure" type="Label" parent="Stats"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 40.0
+offset_bottom = 41.0
+text = "Q"
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
