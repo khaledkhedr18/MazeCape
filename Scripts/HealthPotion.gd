@@ -9,7 +9,7 @@ var HealthPotionResource = preload("res://Resources/HealthPotion.tres")
 
 func _on_interacted(body):
 	if $".".visible:
-		inventory.PickupItem(HealthPotionResource)
+		inventory.Add(HealthPotionResource)
 		inventory.reflowButtons()
 		queue_free()
 

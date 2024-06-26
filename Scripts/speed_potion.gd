@@ -8,7 +8,7 @@ var SpeedPotionResource = preload("res://Resources/SpeedPotion.tres")
 
 func _on_interacted(body):
 	if $".".visible:
-		inventory.PickupItem(SpeedPotionResource)
+		inventory.Add(SpeedPotionResource)
 		inventory.reflowButtons()
 		queue_free()
 

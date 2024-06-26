@@ -8,11 +8,11 @@ var health=50
 signal zombie_hit
 
 @onready var a_p=$"../../MainChar/AnimationPlayer"
-@export var player_path:NodePath
-@onready var nav=$NavigationAgent3D
-@onready var anim_z=$AnimationTree
-@onready var anim_p=$AnimationPlayer
-@onready var state_machine =anim_z.get("parameters/playback")
+@export var player_path : NodePath
+@onready var nav = $NavigationAgent3D
+@onready var anim_z = $AnimationTree
+@onready var anim_p = $AnimationPlayer
+@onready var state_machine = anim_z.get("parameters/playback")
 
 func _ready():
 	player=get_node(player_path)

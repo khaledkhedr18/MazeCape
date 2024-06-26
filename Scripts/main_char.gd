@@ -134,11 +134,6 @@ func _physics_process(delta):
 	$Stats/HealthFigure.text = str($".".Health)
 
 
-	
-	
-	
-		
-	
 	#$AnimationTree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/moving", direction != Vector3.ZERO && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/firing", Input.is_action_pressed("fire"))
@@ -159,17 +154,5 @@ func _headbob(time) -> Vector3:
 func hit(dir):
 	emit_signal("player_hit")
 	velocity+=dir*hit_stagger
-	
-	
 
 
-
-
-
-
-		
-
-
-
-	 
-	

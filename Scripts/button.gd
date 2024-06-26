@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_interacted(body):
-	if inventory.has_item(keycard_name):
+	if !inventory.has_item(keycard_name):
 		$AudioStreamPlayer3D.play()
 		door.toggle(body)
 	else:

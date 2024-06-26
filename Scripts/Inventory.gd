@@ -16,7 +16,6 @@ func _ready():
 	
 	gridContainer = $ScrollContainer/GridContainer
 	populateButtons()
-	pass # Replace with function body.
 
 
 func _process(delta):
@@ -26,7 +25,7 @@ func _process(delta):
 func _input(event):
 	$MouseArea.position = get_tree().root.get_mouse_position()
 	if hoveredButton != null:
-		if Input.is_action_just_pressed("Throw"):
+		if Input.is_action_pressed("Throw"):
 			grabbedButton = hoveredButton
 			lastClickedMousePos = get_tree().root.get_mouse_position()
 
@@ -37,6 +36,7 @@ func _input(event):
 				$MouseArea/InventoryButton.show()
 				$MouseArea/InventoryButton.UpdateItem(grabbedButton.currentItem, 0)
 
+
 			if Input.is_action_just_released("Throw"):
 				if overTrash:
 					DeleteButton(grabbedButton)
@@ -44,12 +44,14 @@ func _input(event):
 					SwapButtons(grabbedButton, hoveredButton)
 					$MouseArea/InventoryButton.hide()
 
-
 	if Input.is_action_just_released("Throw") && $MouseArea/InventoryButton.visible:
 		$MouseArea/InventoryButton.hide()
 		if overTrash:
 			DeleteButton(grabbedButton)
 		grabbedButton = null
+
+	if Input.is_action_just_pressed("Itemuse"):
+		OnButtonClicked(hoveredButton.get_index(), hoveredButton.currentItem)
 
 
 func DeleteButton(button):
@@ -142,15 +144,13 @@ func updateButton(index : int):
 
 
 func OnButtonClicked(index, CurrentItem):
-	if CurrentItem != null && Input.is_action_just_pressed("Throw") && CurrentItem.Usable:
+	if CurrentItem != null && CurrentItem.Usable:
 		CurrentItem.UseItem(character)
 		CurrentItem.Quantity -= 1
 		print(CurrentItem.Quantity)
 		reflowButtons()
 		if CurrentItem.Quantity == 0:
 			Remove(CurrentItem)
-	else:
-		pass
 
 
 func _on_button_button_down():

@@ -9,7 +9,7 @@ var JumpPotionResource = preload("res://Resources/JumpPotion.tres")
 
 func _on_interacted(body):
 	if $".".visible:
-		inventory.PickupItem(JumpPotionResource)
+		inventory.Add(JumpPotionResource)
 		inventory.reflowButtons()
 		queue_free()
 
