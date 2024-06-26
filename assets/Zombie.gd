@@ -18,12 +18,14 @@ func _ready():
 	player=get_node(player_path)
 func _process(delta):
 	velocity=Vector3.ZERO
-	nav.set_target_position(player.global_transform.origin)
-	var next_nav_point=nav.get_next_path_position()
-	velocity=(next_nav_point-global_transform.origin).normalized()*speed
-	look_at(Vector3(player.global_position.x,global_position.y,player.global_position.z),Vector3.UP)
+	if player.p_health>0:
+		nav.set_target_position(player.global_transform.origin)
+		var next_nav_point=nav.get_next_path_position()
+		velocity=(next_nav_point-global_transform.origin).normalized()*speed
+		look_at(Vector3(player.global_position.x,global_position.y,player.global_position.z),Vector3.UP)
 	
 	var current_state = state_machine.get_current_node()
+	
 	if current_state!=target_anim:
 		speed=0
 	else:
