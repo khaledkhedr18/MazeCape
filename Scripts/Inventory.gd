@@ -13,6 +13,7 @@ var overTrash
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	gridContainer = $ScrollContainer/GridContainer
 	populateButtons()
 	pass # Replace with function body.

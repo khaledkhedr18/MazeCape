@@ -1,24 +1,75 @@
-[gd_scene load_steps=6 format=3 uid="uid://c68y087mlmcx3"]
+[gd_scene load_steps=10 format=3 uid="uid://c68y087mlmcx3"]
 
 [ext_resource type="Script" path="res://Scripts/main_char.gd" id="1_48kol"]
 [ext_resource type="PackedScene" uid="uid://d0s21ppsnj7ga" path="res://assets/newrif.tscn" id="2_0olcy"]
 [ext_resource type="PackedScene" uid="uid://catp65un0gqi4" path="res://Interact/interact_ray.tscn" id="3_nhoe5"]
+[ext_resource type="AudioStream" uid="uid://c5131h25r4nr1" path="res://assets/male-death-sound-128357.mp3" id="4_ken3n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hylir"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nqkxh"]
 height = 1.87452
 
+[sub_resource type="Animation" id="Animation_tqto2"]
+resource_name = "died"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.55701, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pp1h2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wcpk"]
+_data = {
+"RESET": SubResource("Animation_pp1h2"),
+"died": SubResource("Animation_tqto2")
+}
+
 [node name="MainChar" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_48kol")
-Health = 50
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144958, 0.834784, 0)
 mesh = SubResource("CapsuleMesh_hylir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.24878, 0, 0, 0, 1.24878, 0, 0, 0, 1.24878, 0.141098, 0.891191, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146725, 0.892083, -0.00621179)
 shape = SubResource("CapsuleShape3D_nqkxh")
 
 [node name="head" type="Node3D" parent="."]
@@ -33,6 +84,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.2, -0.22, -0.407)
 [node name="aimray" type="RayCast3D" parent="head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, 0, -300)
+collision_mask = 2
 collide_with_areas = true
 
 [node name="aimrayend" type="Node3D" parent="head/Camera3D"]
@@ -41,34 +93,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -301)
 [node name="InteractRay" parent="head/Camera3D" instance=ExtResource("3_nhoe5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00237021, -0.0872309, 0.398574)
 target_position = Vector3(0, 0, 2.5)
-collision_mask = 7
 
-[node name="Stats" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7wcpk")
+}
 
-[node name="Health" type="Label" parent="Stats"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Health:
-"
-
-[node name="HealthFigure" type="Label" parent="Stats"]
-layout_mode = 0
-offset_top = 21.0
-offset_right = 56.0
-offset_bottom = 44.0
-text = "Q
-"
-
-[node name="JumpTimer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="SpeedTimer" type="Timer" parent="."]
-wait_time = 5.0
-
-[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
-[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ken3n")

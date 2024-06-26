@@ -1,4 +1,6 @@
 extends MeshInstance3D
+@onready var blood=$blood
+@onready var others=$others
 
 var alpha=1.0
 # Called when the node enters the scene tree for the first time.
@@ -16,8 +18,20 @@ func init(pos1,pos2):
 	draw_mesh.surface_end()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	alpha-=delta*2
+	alpha-=delta*1
 	material_override.albedo_color.a=alpha
+	
+func trigger_particles(pos,gun_pos,on_enemy):
+	if on_enemy:
+		blood.position=pos
+		blood.look_at(gun_pos)
+		blood.emitting=true
+	else:
+		others.position=pos
+		others.look_at(gun_pos)
+		others.emitting=true
+	
+	
 
 
 
