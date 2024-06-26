@@ -51,20 +51,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2lfa3")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_quspj"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t43dd"]
 
 [node name="SpeedPotion" type="StaticBody3D"]
 script = ExtResource("1_7e0g4")
 prompt_message = "Pick Up"
 
 [node name="Object_8" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.476, 0, 0, 0, 0.476, 0, 0, 0, 0.476, 0, 0, 0)
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 mesh = SubResource("ArrayMesh_70tps")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730043, 0)
-shape = SubResource("CapsuleShape3D_quspj")
+transform = Transform3D(0.382677, 0, 0, 0, 0.382677, 0, 0, 0, 0.382677, 0, 0.276825, 0)
+shape = SubResource("CapsuleShape3D_t43dd")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]
 [connection signal="used" from="." to="." method="_on_used"]

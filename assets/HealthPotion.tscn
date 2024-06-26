@@ -51,19 +51,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cnq4c")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p4wqs"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xwta7"]
 
 [node name="Node3D" type="StaticBody3D"]
 script = ExtResource("1_ppmym")
 prompt_message = "Pick Up"
 
 [node name="Object_4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.476067, 0, 0, 0, 0.476067, 0, 0, 0, 0.476067, 0, 0.0101471, 0)
+transform = Transform3D(0.201539, 0, 0, 0, 0.201539, 0, 0, 0, 0.201539, 0, 0.0101471, 0)
 mesh = SubResource("ArrayMesh_xu4pq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750102, 0)
-shape = SubResource("CapsuleShape3D_p4wqs")
+transform = Transform3D(0.433517, 0, 0, 0, 0.433517, 0, 0, 0, 0.433517, 0, 0.330487, -2.38419e-07)
+shape = SubResource("CapsuleShape3D_xwta7")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]

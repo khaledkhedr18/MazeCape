@@ -28,19 +28,20 @@ func _process(delta):
 		speed=0
 	else:
 		speed=4
-	
+
 	move_and_slide()
-	
-	
+
+
 	anim_z.set("parameters/conditions/run",! _target_in_range())
 	anim_z.set("parameters/conditions/attack",_target_in_range())
 	anim_z.set("parameters/conditions/die",health<=0)
-	
-	
+
+
 func _target_in_range():
-	if player.p_health>0:
-		return global_position.distance_to(player.global_position) <attack_r
-	
+	if player.p_health > 0:
+		return global_position.distance_to(player.global_position) < attack_r
+
+
 func _hit_finished():
 	if global_position.distance_to(player.global_position) < attack_r+1:
 		var dir=global_position.direction_to(player.global_position)
@@ -51,19 +52,10 @@ func _hit_finished():
 			player.SPRINT_SPEED=0
 			player.JUMP_VELOCITY=0
 			a_p.play("died")
-			
-			
-	
-
-
-
-
-
-	
 
 
 func _on_area_3d_body_part_hit(dam):
-	health-=dam
+	health -= dam
 	emit_signal("zombie_hit")
 	if health<=0:
 		await get_tree().create_timer(2).timeout

@@ -10,6 +10,21 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nqkxh"]
 height = 1.87452
 
+[sub_resource type="Animation" id="Animation_pp1h2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_tqto2"]
 resource_name = "died"
 tracks/0/type = "value"
@@ -37,21 +52,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_pp1h2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7wcpk"]
 _data = {
 "RESET": SubResource("Animation_pp1h2"),
@@ -59,7 +59,6 @@ _data = {
 }
 
 [node name="MainChar" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_48kol")
@@ -101,3 +100,31 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_ken3n")
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="Stats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Health:"
+
+[node name="HealthFigure" type="Label" parent="Stats"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 40.0
+offset_bottom = 41.0
+text = "Q"
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

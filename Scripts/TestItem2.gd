@@ -1,5 +1,5 @@
 extends "res://Scripts/Item.gd"
 
 
-func UseItem():
+func UseItem(character):
 	print("Used Item Again !!")

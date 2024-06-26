@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7yfbfj26qdeg"]
+[gd_scene load_steps=26 format=3 uid="uid://b7yfbfj26qdeg"]
 
 [ext_resource type="Script" path="res://Scripts/main_level.gd" id="1_b1ypq"]
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
-[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
 [ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
 [ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
 [ext_resource type="PackedScene" uid="uid://c68y087mlmcx3" path="res://assets/main_char.tscn" id="6_mmxtj"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://vxcbcpmrkctj" path="res://assets/button.tscn" id="13_u4hqc"]
 [ext_resource type="PackedScene" uid="uid://dtfxymin373ta" path="res://assets/key_card.tscn" id="14_jg0m0"]
 [ext_resource type="PackedScene" uid="uid://ivotp7s73s8s" path="res://assets/Zombie.tscn" id="15_1wbcl"]
+[ext_resource type="PackedScene" uid="uid://dl1o4aqpk0fhg" path="res://assets/speed_potion.tscn" id="15_d72i7"]
+[ext_resource type="PackedScene" uid="uid://bxuokrilk0sye" path="res://assets/HealthPotion.tscn" id="16_r555w"]
+[ext_resource type="PackedScene" uid="uid://dg5al23hx8t2c" path="res://assets/jump_potion.tscn" id="17_ag2y6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cens5"]
 vertices = PackedVector3Array(-124.5, 1, -124.5, -124.5, 1, 124.5, 124.5, 1, 124.5, 124.5, 1, -124.5)
@@ -163,15 +166,17 @@ offset_right = 128.0
 offset_bottom = 128.0
 texture = ExtResource("9_lk1xr")
 
-[node name="Chest" parent="." instance=ExtResource("9_7scvt")]
+[node name="Chest" parent="." node_paths=PackedStringArray("Key") instance=ExtResource("9_7scvt")]
 transform = Transform3D(-0.645138, 0, -8.74228e-08, 0, 0.645138, 0, 5.63997e-08, 0, -1, -22.6738, 0.528666, -63.269)
 collision_layer = 3
 collision_mask = 3
+Key = NodePath("../KeyCard")
 
 [node name="InventoryIcon" parent="." instance=ExtResource("10_4armb")]
 
 [node name="Inventory" parent="." instance=ExtResource("11_kupj2")]
 visible = false
+charpath = NodePath("../MainChar")
 
 [node name="Door And Button" type="Node3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -18.8548, 5.09443, -61.3174)
@@ -180,16 +185,62 @@ transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -18.85
 
 [node name="Button" parent="Door And Button" instance=ExtResource("13_u4hqc")]
 transform = Transform3D(-1, 2.6054e-15, 8.74228e-08, -8.74228e-08, -2.98023e-08, -1, 0, -1, 2.98023e-08, -2.7659, 3.1272, -0.650204)
-prompt_input = "interact"
+
+[node name="Potions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8934, 0.906172, -66.1264)
+
+[node name="SpeedPotion" parent="Potions" instance=ExtResource("15_d72i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.60365)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="SpeedPotion2" parent="Potions" instance=ExtResource("15_d72i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00068, 0, -1.60365)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="SpeedPotion3" parent="Potions" instance=ExtResource("15_d72i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.835945, 0, -1.60365)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="Health Potion" parent="Potions" instance=ExtResource("16_r555w")]
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="Health Potion2" parent="Potions" instance=ExtResource("16_r555w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.759007, 0, 0)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="Health Potion3" parent="Potions" instance=ExtResource("16_r555w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.907637, 0, 0)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="JumpPotion" parent="Potions" instance=ExtResource("17_ag2y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.907637, 0, -0.818794)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="JumpPotion2" parent="Potions" instance=ExtResource("17_ag2y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.822758, 0, -0.818794)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
+
+[node name="JumpPotion3" parent="Potions" instance=ExtResource("17_ag2y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0337353, 0, -0.818794)
+charpath = NodePath("../../MainChar")
+inventorypath = NodePath("../../Inventory")
 
 [node name="KeyCard" parent="." instance=ExtResource("14_jg0m0")]
 transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, -22.6602, 1.15232, -63.3197)
 collision_layer = 3
 collision_mask = 3
-prompt_input = "interact"
 
 [node name="MainChar" parent="." groups=["MainChar"] instance=ExtResource("6_mmxtj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8367, 0.501709, -68.1349)
+Health = 50
 
 [connection signal="zombie_hit" from="NavigationRegion3D/Zombie" to="." method="_on_zombie_zombie_hit"]
 [connection signal="zombie_hit" from="NavigationRegion3D/Zombie2" to="." method="_on_zombie_zombie_hit"]

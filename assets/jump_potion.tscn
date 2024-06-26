@@ -51,22 +51,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d0pi4")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbnv1"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_orvqd"]
 
 [node name="JumpPotion" type="StaticBody3D"]
 script = ExtResource("1_cn5d5")
 prompt_message = "Pick Up"
 
 [node name="Object_6" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.476, 0, 0, 0, 0.476, 0, 0, 0, 0.476, 0, 0, 0)
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pggkg")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.729811, 0)
-shape = SubResource("CapsuleShape3D_mbnv1")
-
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.374125, 0, 0, 0, 0.374125, 0, 0, 0, 0.374125, 0.00109673, 0.277745, -0.0109375)
+shape = SubResource("CapsuleShape3D_orvqd")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]
 [connection signal="used" from="." to="." method="_on_used"]
