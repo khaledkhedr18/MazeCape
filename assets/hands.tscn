@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu0d6geipaw5u"]
-
-[ext_resource type="PackedScene" uid="uid://ryovov716pnc" path="res://imports/rifle/fps_pistol_animated.glb" id="1_871b4"]
-
-[node name="Sketchfab_Scene" instance=ExtResource("1_871b4")]
