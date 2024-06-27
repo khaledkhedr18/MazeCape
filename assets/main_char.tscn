@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://c68y087mlmcx3"]
 
 [ext_resource type="Script" path="res://Scripts/main_char.gd" id="1_48kol"]
-[ext_resource type="PackedScene" uid="uid://d0s21ppsnj7ga" path="res://assets/newrif.tscn" id="2_0olcy"]
+[ext_resource type="PackedScene" uid="uid://c77npe88q612b" path="res://assets/newrif.tscn" id="2_0olcy"]
 [ext_resource type="PackedScene" uid="uid://catp65un0gqi4" path="res://Interact/interact_ray.tscn" id="3_nhoe5"]
-[ext_resource type="AudioStream" uid="uid://c5131h25r4nr1" path="res://assets/male-death-sound-128357.mp3" id="4_ken3n"]
+[ext_resource type="AudioStream" path="res://assets/male-death-sound-128357.mp3" id="4_ken3n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hylir"]
 
