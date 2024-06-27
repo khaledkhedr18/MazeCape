@@ -3,24 +3,24 @@
 [ext_resource type="Script" path="res://Scripts/main_level.gd" id="1_b1ypq"]
 [ext_resource type="Texture2D" uid="uid://djv2ungf765q3" path="res://imports/Floor/Ground068_2K-PNG_Color.png" id="1_pyjtt"]
 [ext_resource type="MeshLibrary" uid="uid://covih5ut33ogx" path="res://assets/wallextracollision.tres" id="2_cwqw5"]
-[ext_resource type="Texture2D" uid="uid://bhqiuee8kku1" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
+[ext_resource type="Texture2D" uid="uid://8ku4kj4yr5n0" path="res://imports/Floor/Ground068_2K-PNG_AmbientOcclusion.png" id="2_nopxy"]
 [ext_resource type="Texture2D" uid="uid://qkcf45sgb1m6" path="res://imports/Floor/Ground068_2K-PNG_NormalDX.png" id="3_3vwth"]
 [ext_resource type="Texture2D" uid="uid://4kbty2l0of4s" path="res://imports/Floor/Ground068_2K-PNG_Roughness.png" id="4_w6vwm"]
 [ext_resource type="PackedScene" uid="uid://c68y087mlmcx3" path="res://assets/main_char.tscn" id="6_mmxtj"]
 [ext_resource type="MeshLibrary" uid="uid://dxhomqam5bhjw" path="res://assets/wallscollision2.tres" id="7_plhwx"]
-[ext_resource type="Texture2D" path="res://imports/rifle/hit.png" id="8_hhpmb"]
-[ext_resource type="PackedScene" path="res://assets/Chest.tscn" id="9_7scvt"]
-[ext_resource type="Texture2D" path="res://assets/crosshair159.png" id="9_lk1xr"]
+[ext_resource type="Texture2D" uid="uid://cxqm2g2p22jjq" path="res://imports/rifle/hit.png" id="8_hhpmb"]
+[ext_resource type="PackedScene" uid="uid://bvoeffg400aon" path="res://assets/Chest.tscn" id="9_7scvt"]
+[ext_resource type="Texture2D" uid="uid://d3vlofc7b1nxv" path="res://imports/rifle/crosshair162.png" id="10_0xv65"]
 [ext_resource type="PackedScene" uid="uid://da58vtoyx8qya" path="res://assets/InventoryIcon.tscn" id="10_4armb"]
 [ext_resource type="PackedScene" uid="uid://cl5ome0ssvdst" path="res://assets/inventory.tscn" id="11_kupj2"]
-[ext_resource type="PackedScene" path="res://assets/door.tscn" id="12_s4ypn"]
-[ext_resource type="PackedScene" path="res://assets/button.tscn" id="13_u4hqc"]
-[ext_resource type="PackedScene" path="res://assets/key_card.tscn" id="14_jg0m0"]
+[ext_resource type="PackedScene" uid="uid://cybr4vikflm5y" path="res://assets/door.tscn" id="12_s4ypn"]
+[ext_resource type="PackedScene" uid="uid://vxcbcpmrkctj" path="res://assets/button.tscn" id="13_u4hqc"]
+[ext_resource type="PackedScene" uid="uid://dtfxymin373ta" path="res://assets/key_card.tscn" id="14_jg0m0"]
 [ext_resource type="PackedScene" uid="uid://cubbl46cj1asa" path="res://assets/Zombie.tscn" id="15_1wbcl"]
-[ext_resource type="PackedScene" path="res://assets/speed_potion.tscn" id="15_d72i7"]
-[ext_resource type="PackedScene" path="res://assets/HealthPotion.tscn" id="16_r555w"]
-[ext_resource type="PackedScene" path="res://assets/jump_potion.tscn" id="17_ag2y6"]
-[ext_resource type="PackedScene" path="res://assets/win_button.tscn" id="19_gdugx"]
+[ext_resource type="PackedScene" uid="uid://dl1o4aqpk0fhg" path="res://assets/speed_potion.tscn" id="15_d72i7"]
+[ext_resource type="PackedScene" uid="uid://bxuokrilk0sye" path="res://assets/HealthPotion.tscn" id="16_r555w"]
+[ext_resource type="PackedScene" uid="uid://dg5al23hx8t2c" path="res://assets/jump_potion.tscn" id="17_ag2y6"]
+[ext_resource type="PackedScene" uid="uid://cpuaoovthmla0" path="res://assets/win_button.tscn" id="19_gdugx"]
 [ext_resource type="PackedScene" uid="uid://bhvw4pxqkg177" path="res://assets/mini_map.tscn" id="20_3kgv5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ly6r4"]
@@ -92,7 +92,7 @@ shape = SubResource("BoxShape3D_63w50")
 mesh = SubResource("BoxMesh_60mjx")
 
 [node name="Zombie" parent="NavigationRegion3D" instance=ExtResource("15_1wbcl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4766, 0.378483, -87.0864)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4766, 0.513027, -87.0864)
 player_path = NodePath("../../MainChar")
 
 [node name="Zombie2" parent="NavigationRegion3D" instance=ExtResource("15_1wbcl")]
@@ -157,7 +157,9 @@ visible = false
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
-texture = ExtResource("9_lk1xr")
+texture = ExtResource("10_0xv65")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="Chest and Key" type="Node3D" parent="."]
 transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, -22.6602, 1.15232, -63.3197)
