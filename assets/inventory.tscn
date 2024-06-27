@@ -9,8 +9,8 @@ bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.486275)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftfls"]
 size = Vector2(31.1284, 30.7895)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_unerf"]
-radius = 2.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_o40pc"]
+radius = 1.41421
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -81,14 +81,20 @@ shape = SubResource("RectangleShape2D_ftfls")
 [node name="MouseArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
-shape = SubResource("CircleShape2D_unerf")
+scale = Vector2(1.10905, 1.10905)
+shape = SubResource("CircleShape2D_o40pc")
 
 [node name="InventoryButton" parent="MouseArea" instance=ExtResource("2_3shqk")]
 visible = false
-offset_left = -21.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_top = -20.0
-offset_right = 19.0
 offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="area_entered" from="Trash/TrashArea" to="." method="_on_trash_area_area_entered"]
 [connection signal="area_exited" from="Trash/TrashArea" to="." method="_on_trash_area_area_exited"]

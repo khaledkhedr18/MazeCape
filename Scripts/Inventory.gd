@@ -19,31 +19,32 @@ func _ready():
 
 func _input(event):
 	$MouseArea.position = get_tree().root.get_mouse_position()
-
 	if hoveredButton != null:
-		if Input.is_action_pressed("Throw"):
-			if grabbedButton == null:
-				grabbedButton = hoveredButton
-				lastClickedMousePos = get_tree().root.get_mouse_position()
+		if Input.is_action_just_pressed("Throw"):
+			grabbedButton = hoveredButton
+			lastClickedMousePos = get_tree().root.get_mouse_position()
+
+		if lastClickedMousePos.distance_to(get_tree().root.get_mouse_position()) > 2:
+			if Input.is_action_pressed("Throw"):
+				if grabbedButton == null:
+					grabbedButton = hoveredButton
 				$MouseArea/InventoryButton.show()
 				$MouseArea/InventoryButton.UpdateItem(grabbedButton.currentItem, 0)
 
-		if grabbedButton != null and lastClickedMousePos.distance_to(get_tree().root.get_mouse_position()) > 2:
-			$MouseArea/InventoryButton.position = get_tree().root.get_mouse_position()
-			
 			if Input.is_action_just_released("Throw"):
 				if overTrash:
 					DeleteButton(grabbedButton)
 				else:
 					SwapButtons(grabbedButton, hoveredButton)
-				$MouseArea/InventoryButton.hide()
-				grabbedButton = null
+					$MouseArea/InventoryButton.hide()
 
-	if Input.is_action_just_released("Throw") and $MouseArea/InventoryButton.visible:
+
+	if Input.is_action_just_released("Throw") && $MouseArea/InventoryButton.visible:
 		$MouseArea/InventoryButton.hide()
 		if overTrash:
 			DeleteButton(grabbedButton)
 		grabbedButton = null
+
 
 	if Input.is_action_just_pressed("Itemuse"):
 		if hoveredButton != null:

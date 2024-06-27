@@ -78,6 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173994, 1.34429, 0.412703)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+current = true
 
 [node name="newrif" parent="head/Camera3D" instance=ExtResource("2_0olcy")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.2, -0.22, -0.474651)
