@@ -7,10 +7,10 @@ size = Vector2(40, 40)
 
 [node name="InventoryButton" type="Button"]
 custom_minimum_size = Vector2(40, 40)
-offset_left = 534.0
-offset_top = 270.0
-offset_right = 574.0
-offset_bottom = 310.0
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
 script = ExtResource("1_anexk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
