@@ -13,41 +13,48 @@ var overTrash
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	gridContainer = $ScrollContainer/GridContainer
 	populateButtons()
 
 
+func _process(delta):
+	pass
+
+
 func _input(event):
 	$MouseArea.position = get_tree().root.get_mouse_position()
-
 	if hoveredButton != null:
-		if Input.is_action_pressed("Throw"):
-			if grabbedButton == null:
-				grabbedButton = hoveredButton
-				lastClickedMousePos = get_tree().root.get_mouse_position()
+		if Input.is_action_just_pressed("Throw"):
+			grabbedButton = hoveredButton
+			lastClickedMousePos = get_tree().root.get_mouse_position()
+
+		if lastClickedMousePos.distance_to(get_tree().root.get_mouse_position()) > 2:
+			if Input.is_action_pressed("Throw"):
+				if grabbedButton == null:
+					grabbedButton = hoveredButton
 				$MouseArea/InventoryButton.show()
 				$MouseArea/InventoryButton.UpdateItem(grabbedButton.currentItem, 0)
 
-		if grabbedButton != null and lastClickedMousePos.distance_to(get_tree().root.get_mouse_position()) > 2:
-			$MouseArea/InventoryButton.position = get_tree().root.get_mouse_position()
-			
 			if Input.is_action_just_released("Throw"):
 				if overTrash:
 					DeleteButton(grabbedButton)
 				else:
 					SwapButtons(grabbedButton, hoveredButton)
-				$MouseArea/InventoryButton.hide()
-				grabbedButton = null
+					$MouseArea/InventoryButton.hide()
 
-	if Input.is_action_just_released("Throw") and $MouseArea/InventoryButton.visible:
+
+	if Input.is_action_just_released("Throw") && $MouseArea/InventoryButton.visible:
 		$MouseArea/InventoryButton.hide()
 		if overTrash:
 			DeleteButton(grabbedButton)
 		grabbedButton = null
 
+
 	if Input.is_action_just_pressed("Itemuse"):
-		if hoveredButton != null:
-			OnButtonClicked(hoveredButton.get_index(), hoveredButton.currentItem)
+		OnButtonClicked(hoveredButton.get_index(), hoveredButton.currentItem)
+
+
 func DeleteButton(button):
 	items.remove_at(items.find(button.currentItem))
 	reflowButtons()
@@ -137,15 +144,14 @@ func updateButton(index : int):
 		gridContainer.get_child(index).UpdateItem(null, index)
 
 
-func OnButtonClicked(_index, CurrentItem):
+func OnButtonClicked(index, CurrentItem):
 	if CurrentItem != null && CurrentItem.Usable:
 		CurrentItem.UseItem(character)
 		CurrentItem.Quantity -= 1
+		print(CurrentItem.Quantity)
 		reflowButtons()
 		if CurrentItem.Quantity == 0:
 			Remove(CurrentItem)
-	else:
-		pass
 
 
 func _on_button_button_down():
@@ -190,13 +196,13 @@ func PickupItem(item: Resource):
 		print("Inventory is full!")
 
 
-# func UseItem(item: Resource):
-# 	if item != null:
-# 		item.UseItem()
-# 		item.Quantity -= 1
-# 		if item.Quantity == 0:
-# 			Remove(item)
-# 		reflowButtons()
+func UseItem(item: Resource):
+	if item != null:
+		item.UseItem()
+		item.Quantity -= 1
+		if item.Quantity == 0:
+			Remove(item)
+		reflowButtons()
 
 func has_item(item_name : String) -> bool:
 	for item in items:

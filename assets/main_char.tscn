@@ -10,6 +10,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nqkxh"]
 height = 1.87452
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjd1"]
+
 [sub_resource type="Animation" id="Animation_pp1h2"]
 length = 0.001
 tracks/0/type = "value"
@@ -58,8 +60,6 @@ _data = {
 "died": SubResource("Animation_tqto2")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjd1"]
-
 [node name="MainChar" type="CharacterBody3D"]
 collision_layer = 3
 collision_mask = 3
@@ -95,11 +95,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -301)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00237021, -0.0872309, 0.398574)
 target_position = Vector3(0, 0, 2.5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7wcpk")
-}
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_ken3n")
 
@@ -131,6 +126,11 @@ wait_time = 10.0
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.00724622, -0.199967, 0, 0.399934, 0.00362311, 0, 1.16332, 0.951903)
 shape = SubResource("CapsuleShape3D_qgjd1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7wcpk")
+}
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
