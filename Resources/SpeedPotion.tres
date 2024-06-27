@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cj1de1dpb0yft"]
+
+[ext_resource type="Texture2D" uid="uid://hnw5vb588spm" path="res://imports/SpeedPotion.png" id="1_6n032"]
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="2_xks2t"]
+
+[resource]
+script = ExtResource("2_xks2t")
+ID = 5
+Name = "Speedpotion"
+ResourcePath = ""
+Icon = ExtResource("1_6n032")
+Quantity = 1
+StackSize = 10
+IsStackable = true
+Usable = true

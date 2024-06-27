@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1oq26dcnxada"]
+
+[ext_resource type="PackedScene" uid="uid://bjuiita0ftwpc" path="res://imports/Door/models.gltf" id="1_8wwoc"]
+
+[node name="models" instance=ExtResource("1_8wwoc")]
+
+[node name="Skeleton3D" parent="ChestArmature" index="0"]
+bones/1/rotation = Quaternion(-0.130526, 0, 0, 0.991445)

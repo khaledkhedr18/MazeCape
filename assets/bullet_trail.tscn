@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2ybwkl84td7"]
+
+[ext_resource type="Script" path="res://Scripts/bullet trail.gd" id="1_dbjii"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v7ul"]
+transparency = 1
+albedo_color = Color(0.90792, 0.97, 0.0388, 1)
+emission_enabled = true
+emission = Color(0.917647, 0.0313726, 0.152941, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6wx1"]
+albedo_color = Color(0.219166, 0.039795, 0.00264383, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.20868, 2.48174e-07, 2.40654e-08, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="Curve" id="Curve_dr5yn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_huxlq"]
+curve = SubResource("Curve_dr5yn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_em7dq"]
+direction = Vector3(0, 0, -1)
+spread = 25.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+scale_curve = SubResource("CurveTexture_huxlq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_5c52o"]
+radius = 0.04
+height = 0.08
+
+[node name="bullet trail" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_7v7ul")
+script = ExtResource("1_dbjii")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="blood" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_o6wx1")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_em7dq")
+draw_pass_1 = SubResource("SphereMesh_5c52o")
+
+[node name="others" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_o6wx1")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_em7dq")
+draw_pass_1 = SubResource("SphereMesh_5c52o")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

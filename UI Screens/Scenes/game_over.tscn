@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqjvmje1bxget"]
+
+[ext_resource type="Texture2D" uid="uid://bh8yktsxceb3s" path="res://imports/Mazenobackground.png" id="1_i2wne"]
+[ext_resource type="FontFile" uid="uid://di4gl0b7kah2g" path="res://Fonts/19919.ttf" id="2_jub5t"]
+[ext_resource type="FontFile" uid="uid://dhf7vfrbj6u7v" path="res://Fonts/PIXEL-LI.TTF" id="3_u8khf"]
+[ext_resource type="FontFile" uid="uid://dxjlidfg8mpvg" path="res://Fonts/Crosterian.ttf" id="4_g0u6c"]
+[ext_resource type="Script" path="res://UI Screens/Scripts/MainScreenBtns.gd" id="5_8jg66"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2sljo"]
+font = ExtResource("3_u8khf")
+font_size = 200
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-5.85, 6.39)
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.176471, 0.356863, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -270.0
+offset_right = 1008.0
+offset_bottom = 1096.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.515103, 0.515103)
+texture = ExtResource("1_i2wne")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 25.0
+offset_right = 574.0
+offset_bottom = 225.0
+grow_horizontal = 2
+scale = Vector2(0.837384, 0.943577)
+theme_override_fonts/font = ExtResource("2_jub5t")
+text = "youu Wonn!!"
+label_settings = SubResource("LabelSettings_2sljo")
+horizontal_alignment = 1
+
+[node name="PlayAgainBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -62.5
+offset_right = 300.0
+offset_bottom = 62.5
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.0941176, 0.65098, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.945098, 0.207843, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.694118, 0.207843, 1)
+theme_override_fonts/font = ExtResource("4_g0u6c")
+theme_override_font_sizes/font_size = 32
+text = "Play Again"
+flat = true
+script = ExtResource("5_8jg66")
+
+[node name="ExitBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -62.5
+offset_bottom = 62.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.0941176, 0.65098, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.945098, 0.207843, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.694118, 0.207843, 1)
+theme_override_fonts/font = ExtResource("4_g0u6c")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+flat = true
+
+[connection signal="pressed" from="PlayAgainBtn" to="PlayAgainBtn" method="_on_pressed"]
+[connection signal="pressed" from="ExitBtn" to="PlayAgainBtn" method="_on_exit_btn_pressed"]
