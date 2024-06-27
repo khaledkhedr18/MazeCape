@@ -4,6 +4,7 @@ var speed=0
 const gravity=9.8
 const attack_r=2.5
 var target_anim="Run"
+var target_range=10
 var health=50
 signal zombie_hit
 @onready var armature = $Armature
@@ -24,13 +25,19 @@ var randpotion = Potions[rand_index]
 func _ready():
 	player=get_node(player_path)
 func _process(delta):
-
+	$".".visible=false
 	velocity=Vector3.ZERO
-	nav.set_target_position(player.global_transform.origin)
-	var next_nav_point=nav.get_next_path_position()
-	velocity=(next_nav_point-global_transform.origin).normalized()*speed
-	look_at(Vector3(player.global_position.x,global_position.y,player.global_position.z),Vector3.UP)
+	if player.Health>0:
+		if player_in_range():
+			$".".visible=true
+			target_range=1000000
+			nav.set_target_position(player.global_transform.origin)
+			var next_nav_point=nav.get_next_path_position()
+			velocity=(next_nav_point-global_transform.origin).normalized()*speed
+			look_at(Vector3(player.global_position.x,global_position.y,player.global_position.z),Vector3.UP)
+			
 	var current_state = state_machine.get_current_node()
+	
 	if current_state!=target_anim:
 		speed=0
 	else:
@@ -41,11 +48,14 @@ func _process(delta):
 	anim_z.set("parameters/conditions/run",! _target_in_range())
 	anim_z.set("parameters/conditions/attack",_target_in_range())
 	anim_z.set("parameters/conditions/die",health<=0)
+	anim_z.set("parameters/conditions/target",target_range>10)
 
 
 func _target_in_range():
 	if player.Health > 0:
-		return global_position.distance_to(player.global_position) < attack_r
+		return  global_position.distance_to(player.global_position) <attack_r
+func player_in_range():
+	return global_position.distance_to(player.global_position) < target_range
 
 
 func _hit_finished():
@@ -60,7 +70,6 @@ func _hit_finished():
 			player.JUMP_VELOCITY=0
 			a_p.play("died")
 			death_timer.start()
-
 func _on_area_3d_body_part_hit(dam):
 	health -= dam
 	emit_signal("zombie_hit")
