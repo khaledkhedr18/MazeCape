@@ -9,8 +9,8 @@ extends Node3D
 func _ready():
 	crosshair.position.x=get_viewport().size.x/2-64
 	crosshair.position.y=get_viewport().size.y/2-64
-	crosshair2.position.x=get_viewport().size.x/2-64
-	crosshair2.position.y=get_viewport().size.y/2-64
+	crosshair2.position.x=get_viewport().size.x/2-16
+	crosshair2.position.y=get_viewport().size.y/2-16
 
 
 

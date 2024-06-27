@@ -141,8 +141,8 @@ func _physics_process(delta):
 	#$AnimationTree.set("parameters/conditions/straifRight", input_dir.x == 1 && is_on_floor())
 	#$AnimationTree.set("parameters/conditions/falling", !is_on_floor())
 	#$AnimationTree.set("parameters/conditions/landed", is_on_floor())
-	if !$"../Inventory".visible:
-		move_and_slide()
+	
+	move_and_slide()
 	head.rotation_degrees.x=look_rot.x
 	rotation_degrees.y=look_rot.y
 func _headbob(time) -> Vector3:
