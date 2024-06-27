@@ -19,6 +19,7 @@ var Potions = [JumpPotion, SpeedPotion, HealthPotion]
 @onready var state_machine = anim_z.get("parameters/playback")
 var rand_index = randi() % Potions.size()
 var randpotion = Potions[rand_index]
+@onready var death_timer = $DeathTimer
 
 func _ready():
 	player=get_node(player_path)
@@ -54,14 +55,11 @@ func _hit_finished():
 		player.hit(dir)
 		player.Health=player.Health-1
 		if player.Health<=0:
-			var loot = randpotion.instantiate()
-			loot.position = position
-			$".".add_child(loot)
 			player.WALK_SPEED=0
 			player.SPRINT_SPEED=0
 			player.JUMP_VELOCITY=0
 			a_p.play("died")
-
+			death_timer.start()
 
 func _on_area_3d_body_part_hit(dam):
 	health -= dam
@@ -73,3 +71,8 @@ func _on_area_3d_body_part_hit(dam):
 		await get_tree().create_timer(2).timeout
 		queue_free()
 	
+
+
+func _on_death_timer_timeout():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_file("res://UI Screens/Scenes/YouDied.tscn")

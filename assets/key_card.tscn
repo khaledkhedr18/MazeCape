@@ -51,7 +51,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3vhar")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wscwc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_65cnm"]
+size = Vector3(1.62305, 2.08112, 1)
 
 [node name="KeyCard" type="StaticBody3D"]
 transform = Transform3D(0.44348, 0, 0, 0, 0.44348, 0, 0, 0, 0.44348, 0, 0, 0)
@@ -59,12 +60,12 @@ script = ExtResource("1_weqhc")
 prompt_message = "Pick Up"
 
 [node name="Keycard" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.330869, 0, 0, 0, 0.330869, 0, 0, 0, 0.330869, 0, 0, 0)
+transform = Transform3D(2.01052, 0, 0, 0, 2.01052, 0, 0, 0, 2.01052, 0, 1.10309, 0)
 mesh = SubResource("ArrayMesh_aa4td")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.27359, 0, 0, 0, 0.33, 0, 0, 0, 0.0196208, 0, 0, 0)
-shape = SubResource("BoxShape3D_wscwc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.0886343, 0.00195313, 1.11853, 0)
+shape = SubResource("BoxShape3D_65cnm")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]

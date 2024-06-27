@@ -12,3 +12,4 @@ Icon = ExtResource("1_x023f")
 Quantity = 1
 StackSize = 1
 IsStackable = false
+Usable = true

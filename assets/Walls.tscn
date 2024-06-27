@@ -46,7 +46,7 @@ mesh = SubResource("BoxMesh_im6c0")
 [node name="StaticBody3D" type="StaticBody3D" parent="Brick Wall"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Brick Wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 10.1006, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hqlgb")
 
 [node name="Metal Wall" type="MeshInstance3D" parent="."]
@@ -56,5 +56,5 @@ mesh = SubResource("BoxMesh_jt5gp")
 [node name="StaticBody3D" type="StaticBody3D" parent="Metal Wall"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Metal Wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 10.098, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hqlgb")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://dax3xh6u14hmt"]
+
+[ext_resource type="Script" path="res://Scripts/MiniMap.gd" id="1_ij3fq"]
+
+[node name="MiniMap" type="ColorRect"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.0
+offset_top = 35.0
+offset_right = -73.0
+offset_bottom = 235.0
+grow_horizontal = 0
+scale = Vector2(1.16995, 1.16995)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.180005, 0.180005, 0.180005, 1)
+script = ExtResource("1_ij3fq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 20, 0)
+projection = 1
+current = true
+size = 20.0
