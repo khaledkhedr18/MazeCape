@@ -4246,9 +4246,6 @@ avoidance_enabled = true
 radius = 50.0
 neighbor_distance = 100.0
 
-[node name="DeathTimer" type="Timer" parent="."]
-wait_time = 5.0
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_jq5bc")
 anim_player = NodePath("../AnimationPlayer")
@@ -4261,6 +4258,9 @@ libraries = {
 "": SubResource("AnimationLibrary_h771o")
 }
 autoplay = "Attack"
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [connection signal="body_part_hit" from="Armature/Skeleton3D/Head/Area3D" to="." method="_on_area_3d_body_part_hit"]
 [connection signal="body_part_hit" from="Armature/Skeleton3D/Torso/Area3D" to="." method="_on_area_3d_body_part_hit"]
