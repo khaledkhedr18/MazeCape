@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://da58vtoyx8qya"]
 
-[ext_resource type="Texture2D" path="res://imports/backpack.png" id="1_1kqyk"]
-[ext_resource type="FontFile" path="res://Fonts/Rich Eatin'.otf" id="2_03tqj"]
+[ext_resource type="Texture2D" uid="uid://dybh67ofpmfqg" path="res://imports/backpack.png" id="1_1kqyk"]
+[ext_resource type="FontFile" uid="uid://ds5pig7oo1x48" path="res://Fonts/Rich Eatin'.otf" id="2_03tqj"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
